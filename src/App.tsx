@@ -1,8 +1,11 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 import { ChakraProvider, theme } from "@chakra-ui/react";
 import MovieList from "./components/MovieList";
+import SearchBox from "./components/SearchBox";
+import MovieListHeading from "./components/MovieListHeading";
 
 const api_key = "97352ccd"; //omdb api-key
 
@@ -45,9 +48,10 @@ function App() {
       });
   }, []); */
   const [movies, setMovies] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
 
-  const getMovieRequest = async () => {
-    const url = `http://www.omdbapi.com/?s=starwars&apikey=97352ccd`;
+  const getMovieRequest = async (searchValue: any) => {
+    const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=${api_key}`;
     //const url = " http://www.omdbapi.com/?i=tt3896198&apikey=97352ccd";
     const response = await fetch(url);
     const responseJson = await response.json();
@@ -58,16 +62,23 @@ function App() {
   };
 
   useEffect(() => {
-    getMovieRequest();
-  }, []);
+    getMovieRequest(searchValue);
+  }, [searchValue]);
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <ChakraProvider theme={theme}>
+    <ChakraProvider theme={theme}>
+      <div className="container-fluid movie-app">
+        <div className="row d-flex align-items-center mt-4 mb-4">
+          <MovieListHeading heading="Movies" />
+          <SearchBox
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
+          />
+        </div>
+        <div className="row">
           <MovieList movies={movies} />
-        </ChakraProvider>
+        </div>
       </div>
-    </div>
+    </ChakraProvider>
   );
 }
 
