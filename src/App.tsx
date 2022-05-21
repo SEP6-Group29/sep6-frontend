@@ -6,8 +6,10 @@ import { ChakraProvider, theme } from "@chakra-ui/react";
 import MovieList from "./components/MovieList";
 import SearchBox from "./components/SearchBox";
 import MovieListHeading from "./components/MovieListHeading";
+import AddFavourites from "./components/AddToFavourites";
 
 const api_key = "97352ccd"; //omdb api-key
+//const term = "harry potter";
 
 //const api_key = "8cde606940b8d0ad765c51ff2e7a2d91"; //api.themoviedb.org api-key
 
@@ -48,7 +50,11 @@ function App() {
       });
   }, []); */
   const [movies, setMovies] = useState([]);
+  /*const [searchValue, setSearchValue] = useState(
+    "http://www.omdbapi.com/?s=${term}&apikey=${api_key}`"
+  );*/
   const [searchValue, setSearchValue] = useState("");
+  const [favourites, setFavourites] = useState([]);
 
   const getMovieRequest = async (searchValue: any) => {
     const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=${api_key}`;
@@ -61,9 +67,16 @@ function App() {
     }
   };
 
+  const addFavouriteMovie = (movie: never) => {
+    const newFavouriteList = [...favourites, movie];
+    setFavourites(newFavouriteList);
+    console.log(newFavouriteList);
+  };
+
   useEffect(() => {
     getMovieRequest(searchValue);
   }, [searchValue]);
+
   return (
     <ChakraProvider theme={theme}>
       <div className="container-fluid movie-app">
@@ -75,7 +88,17 @@ function App() {
           />
         </div>
         <div className="row">
-          <MovieList movies={movies} />
+          <MovieList
+            movies={movies}
+            favouriteComponent={AddFavourites}
+            handleFavouritesClick={addFavouriteMovie}
+          />
+        </div>
+        <div className="row d-flex align-item-center mt-4 mb-4">
+          <MovieListHeading heading="Favourites" />
+        </div>
+        <div className="row">
+          <MovieList movies={favourites} favouriteComponent={AddFavourites} />
         </div>
       </div>
     </ChakraProvider>
