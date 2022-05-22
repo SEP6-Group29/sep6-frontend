@@ -11,6 +11,7 @@ import RemoveFavourites from "./components/RemoveFavourites";
 import Movie from "./models/Movie.model";
 
 const api_key = "97352ccd"; //omdb api-key
+const our_api = "https://movieapp-sep6.azurewebsites.net/api/movienames/1";
 //const term = "harry potter";
 
 //const api_key = "8cde606940b8d0ad765c51ff2e7a2d91"; //api.themoviedb.org api-key
@@ -51,12 +52,12 @@ function App() {
         setMovies(data.results);
       });
   }, []); */
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
   /*const [searchValue, setSearchValue] = useState(
     "http://www.omdbapi.com/?s=${term}&apikey=${api_key}`"
   );*/
   const [searchValue, setSearchValue] = useState("");
-  const [favourites, setFavourites] = useState([]);
+  const [favourites, setFavourites] = useState<Movie[]>([]);
 
   const getMovieRequest = async (searchValue: any) => {
     const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=${api_key}`;
@@ -67,7 +68,6 @@ function App() {
     if (responseJson.Search) {
       setMovies(responseJson.Search);
     }
-    console.log(movies);
   };
 
   const addFavouriteMovie = (movie: Movie) => {
