@@ -7,6 +7,8 @@ import MovieList from "./components/MovieList";
 import SearchBox from "./components/SearchBox";
 import MovieListHeading from "./components/MovieListHeading";
 import AddFavourites from "./components/AddToFavourites";
+import RemoveFavourites from "./components/RemoveFavourites";
+import Movie from "./models/Movie.model";
 
 const api_key = "97352ccd"; //omdb api-key
 //const term = "harry potter";
@@ -65,12 +67,21 @@ function App() {
     if (responseJson.Search) {
       setMovies(responseJson.Search);
     }
+    console.log(movies);
   };
 
-  const addFavouriteMovie = (movie: never) => {
-    const newFavouriteList = [...favourites, movie];
+  const addFavouriteMovie = (movie: Movie) => {
+    let newFavouriteList: Movie[] = [];
+    newFavouriteList = [...favourites, movie];
     setFavourites(newFavouriteList);
     console.log(newFavouriteList);
+  };
+
+  const removeFavouriteMovie = (movie: Movie) => {
+    const newFavouriteList = favourites.filter(
+      (favourite: Movie) => favourite.movieId !== movie.movieId
+    );
+    setFavourites(newFavouriteList);
   };
 
   useEffect(() => {
@@ -98,7 +109,11 @@ function App() {
           <MovieListHeading heading="Favourites" />
         </div>
         <div className="row">
-          <MovieList movies={favourites} favouriteComponent={AddFavourites} />
+          <MovieList
+            movies={favourites}
+            handleFavouritesClick={removeFavouriteMovie}
+            favouriteComponent={RemoveFavourites}
+          />
         </div>
       </div>
     </ChakraProvider>
