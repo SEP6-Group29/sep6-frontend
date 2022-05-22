@@ -70,10 +70,31 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    getMovieRequest(searchValue);
+  }, [searchValue]);
+
+  useEffect(() => {
+    const movieFavourites = JSON.parse(
+      localStorage.getItem("react-movie-app-favourites")!
+    );
+
+    setFavourites(movieFavourites);
+  }, []);
+
+  const saveToLocalStorage = (currentFavoriteMovies: Movie[]) => {
+    localStorage.setItem(
+      "react-movie-app-favourites",
+      JSON.stringify(currentFavoriteMovies)
+    );
+  };
+
   const addFavouriteMovie = (movie: Movie) => {
     let newFavouriteList: Movie[] = [];
     newFavouriteList = [...favourites, movie];
     setFavourites(newFavouriteList);
+    saveToLocalStorage(newFavouriteList);
+
     console.log(newFavouriteList);
   };
 
@@ -82,11 +103,8 @@ function App() {
       (favourite: Movie) => favourite.movieId !== movie.movieId
     );
     setFavourites(newFavouriteList);
+    saveToLocalStorage(newFavouriteList);
   };
-
-  useEffect(() => {
-    getMovieRequest(searchValue);
-  }, [searchValue]);
 
   return (
     <ChakraProvider theme={theme}>
