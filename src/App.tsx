@@ -1,6 +1,8 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+// Put any other imports below so that CSS from your
+// components takes precedence over default styles.
+//import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { ChakraProvider, theme } from "@chakra-ui/react";
 import MovieList from "./components/MovieList";
