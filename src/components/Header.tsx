@@ -6,17 +6,27 @@ const Header = () => {
     <header>
       <div className="container">
         <div className="inner-content">
-          <Link to="/">Movies</Link>
-        </div>
+          <div className="brand">
+            <Link to="/">
+              <i>LOGO TO RETURN TO THE MAIN PAGE</i>
+            </Link>
+          </div>
 
-        <ul className="nav-links">
-          <li>
-            <Link to="/">Movies</Link>
-          </li>
-          <li>
-            <Link to="/Favourites">Favourite Movies</Link>
-          </li>
-        </ul>
+          <ul className="nav-links">
+            <li>
+              <Link to="/">Movies</Link>
+            </li>
+            <li>
+              <Link to="/WatchList">Watchlist</Link>
+            </li>
+            <li>
+              <Link to="/Favourites">Favourite Movies</Link>
+            </li>
+            <li>
+              <Link to="/Account">Icon for Account</Link>
+            </li>
+          </ul>
+        </div>
       </div>
     </header>
   );

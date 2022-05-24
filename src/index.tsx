@@ -1,17 +1,28 @@
-import { ChakraProvider } from "@chakra-ui/react";
+import { chakra, ChakraProvider } from "@chakra-ui/react";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import App2 from "./App2";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorker from "./serviceWorker";
 
+import { extendTheme } from "@chakra-ui/react";
 //const container = document.getElementById("root")!;
 //const root = ReactDOM.createRoot(container);
 
+const theme = extendTheme({
+  initialColorMode: "light",
+  useSystemColorMode: false,
+});
+
 ReactDOM.render(
   <React.StrictMode>
-    <ChakraProvider>
-      <App />
+    <ChakraProvider theme={theme}>
+      <BrowserRouter>
+        {/* <App /> */}
+        <App2 />
+      </BrowserRouter>
     </ChakraProvider>
   </React.StrictMode>,
   document.getElementById("root")
