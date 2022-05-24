@@ -5,11 +5,28 @@ import { GlobalContext } from "../context/GlobalState";
 
 //TODO: Change type to model Movie
 const ResultCard = (movie: any) => {
-  const { addMovieToWatchlist, watchlist } = useContext(GlobalContext);
+  const {
+    addMovieToWatchlist,
+    addMovieToWatched,
+    addMovieToFavourites,
+    watchlist,
+    watched,
+    favourites,
+  } = useContext(GlobalContext);
 
+  // Find movie in different lists to enable/disable buttons
   let storedMovie = watchlist.find((o) => o.id === movie.id);
+  let storedMovieWatched = watched.find((o) => o.id === movie.id);
+  let storedMovieFavourites = favourites.find((o) => o.id === movie.id);
 
-  const watchlistDisabled = storedMovie ? true : false;
+  // Booleans to enable/disable the buttons
+  const watchlistDisabled = storedMovie
+    ? true
+    : storedMovieWatched
+    ? true
+    : false;
+  const watchedDisabled = storedMovieWatched ? true : false;
+  const favouriteDisabled = storedMovieFavourites ? true : false;
 
   return (
     <div className="result-card">
@@ -39,7 +56,20 @@ const ResultCard = (movie: any) => {
             >
               Add to Watchlist
             </button>
-            <button className="button">Add to Favourites</button>
+            <button
+              className="button"
+              disabled={watchedDisabled}
+              onClick={() => addMovieToWatched(movie)}
+            >
+              Add to Watched
+            </button>
+            <button
+              className="button"
+              disabled={favouriteDisabled}
+              onClick={() => addMovieToFavourites(movie)}
+            >
+              Add to Favourites
+            </button>
           </div>
         </div>
       </div>

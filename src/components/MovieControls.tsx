@@ -1,0 +1,79 @@
+import React, { useContext } from "react";
+import { GlobalContext } from "../context/GlobalState";
+
+const MovieControls = ({ movie, type }) => {
+  const {
+    removeMovieFromWatchlist,
+    addMovieToWatched,
+    addMovieToFavourites,
+    removeMovieFromFavourites,
+    moveToWatchlist,
+    removeMovieFromWatched,
+  } = useContext(GlobalContext);
+  return (
+    <div className="inner-card-controls">
+      {type === "watchlist" && (
+        <>
+          <button
+            className="ctrl-button"
+            onClick={() => addMovieToWatched(movie)}
+          >
+            <i className="fa-fw far fa-eye"></i>
+          </button>
+
+          <button
+            className="ctrl-button"
+            onClick={removeMovieFromWatchlist(movie.id)}
+          >
+            <i className="fa-fw far fa-times"></i>
+          </button>
+
+          <button
+            className="ctrl-button"
+            onClick={addMovieToFavourites(movie.id)}
+          >
+            <i className="fas fa-heart"></i>
+          </button>
+        </>
+      )}
+
+      {type === "watched" && (
+        <>
+          <button
+            className="ctrl-button"
+            onClick={() => moveToWatchlist(movie)}
+          >
+            <i className="fa-fw far fa-eye-slash"></i>
+          </button>
+
+          <button
+            className="ctrl-button"
+            onClick={() => removeMovieFromWatched(movie.id)}
+          >
+            <i className="fa-fw far fa-times"></i>
+          </button>
+
+          <button
+            className="ctrl-button"
+            onClick={addMovieToFavourites(movie.id)}
+          >
+            <i className="fas fa-heart"></i>
+          </button>
+        </>
+      )}
+
+      {type === "favourites" && (
+        <>
+          <button
+            className="ctrl-button"
+            onClick={removeMovieFromFavourites(movie.id)}
+          >
+            <i className="fa-fw far fa-times"></i>
+          </button>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default MovieControls;

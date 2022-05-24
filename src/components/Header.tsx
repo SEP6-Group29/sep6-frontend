@@ -20,10 +20,10 @@ const Header = () => {
               <Link to="/WatchList">Watchlist</Link>
             </li>
             <li>
-              <Link to="/Favourites">Favourite Movies</Link>
+              <Link to="/watched">Watched</Link>
             </li>
             <li>
-              <Link to="/Account">Icon for Account</Link>
+              <Link to="/Favourites">Favourite Movies</Link>
             </li>
           </ul>
         </div>

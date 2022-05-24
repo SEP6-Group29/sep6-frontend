@@ -9,6 +9,7 @@ import "./App.css";
 import Add from "./components/Add";
 
 import { GlobalProvider } from "./context/GlobalState";
+import Watched from "./components/Watched";
 //import "./lib/font-awesome/css/all.min";
 //import "src/lib/font-awesome/css/all.min.css";
 
@@ -19,11 +20,9 @@ function App2() {
       <Routes>
         <Route path="/" element={<Add />} />
         <Route path="/movies" element={<MovieList />} />
-        {/* <Route path="/login" /> */}
-        {/* <Route path="/register" /> */}
         <Route path="/watchlist" element={<Watchlist />} />
+        <Route path="/watched" element={<Watched />} />
         <Route path="/favourites" element={<AddFavourites />} />
-        {/* <Route path="/account" element={<Account/>} /> */}
       </Routes>
     </GlobalProvider>
   );
