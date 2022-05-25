@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+/* import "src/assets/icons8-romantic-movies-16.png"; */
 
 const Header = () => {
   return (
@@ -8,7 +9,10 @@ const Header = () => {
         <div className="inner-content">
           <div className="brand">
             <Link to="/">
-              <i>LOGO TO RETURN TO THE MAIN PAGE</i>
+              {/* 
+              <img src="https://img.icons8.com/color/48/000000/romantic-movies--v1.png" /> */}
+              <img src="https://img.icons8.com/fluency/96/000000/disney-1.png" />
+              {/* <img src="https://img.icons8.com/color/96/000000/ethereum.png" /> */}
             </Link>
           </div>
 
