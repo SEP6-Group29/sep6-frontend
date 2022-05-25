@@ -43,6 +43,7 @@ export default class MovieService {
       return backup_movies;
     }
 
+    console.log(movieList);
     return movieList;
   }
 
@@ -61,6 +62,7 @@ export default class MovieService {
       return null;
     }
 
+    console.log(movie);
     return movie;
   }
 }

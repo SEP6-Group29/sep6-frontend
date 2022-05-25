@@ -18,6 +18,7 @@ const Add = () => {
 
     movieService.getMoviesByName(query).then((movie) => {
       setMovie(movie);
+      setResults(movie);
     });
     /* 
     movieService.getAllMovies().then((res) => {
