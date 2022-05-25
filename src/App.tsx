@@ -15,7 +15,7 @@ import RemoveFavourites from "./components/RemoveFavourites";
 import Movie from "./models/Movie.model";
 
 const api_key = "97352ccd"; //omdb api-key
-const our_api = "https://movieapp-sep6.azurewebsites.net/api/movienames/1";
+//const our_api = "https://movieapp-sep6.azurewebsites.net/api/movienames/1";
 
 function App() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -63,7 +63,7 @@ function App() {
 
   const removeFavouriteMovie = (movie: Movie) => {
     const newFavouriteList = favourites.filter(
-      (favourite: Movie) => favourite.movieId !== movie.movieId
+      (favourite: Movie) => favourite.id !== movie.id
     );
     setFavourites(newFavouriteList);
     saveToLocalStorage(newFavouriteList);

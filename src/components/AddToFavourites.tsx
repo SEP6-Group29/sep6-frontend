@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
-import { AddIcon } from "@chakra-ui/icons";
 import MovieCard from "./MovieCard";
 
 const AddFavourites = () => {
@@ -8,9 +7,6 @@ const AddFavourites = () => {
   /* TODO: Change icon to a heart icon*/
   return (
     <>
-      {/* <span className="mr-2">Add to Favourites </span>
-      <AddIcon w={3} h={3} /> */}
-
       <div className="movie-page">
         <div className="container">
           <div className="header">

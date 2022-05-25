@@ -23,6 +23,7 @@ export const GlobalProvider = (props: any) => {
 
   useEffect(() => {
     localStorage.setItem("watchlist", JSON.stringify(state.watchlist));
+    localStorage.setItem("watched", JSON.stringify(state.watched));
     localStorage.setItem("favourites", JSON.stringify(state.favourites));
   }, [state]);
 
