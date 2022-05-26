@@ -16,9 +16,15 @@ const Add = () => {
 
     setQuery(e.target.value);
 
-    movieService.getMoviesByName(query).then((movie) => {
-      setMovie(movie);
-      setResults(movie);
+    movieService.getMoviesByName(query).then((movies) => {
+      //setMovie(movies);
+      let myMovies: Movie[] = movies;
+      //setResults(movies);
+      setResults(myMovies);
+      for (var m in myMovies) {
+        console.log("From onChange in the Add component!! " + m);
+      }
+      //console.log("From onChange in the Add component: " + JSON.parse(movie));
     });
     /* 
     movieService.getAllMovies().then((res) => {

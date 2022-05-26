@@ -28,7 +28,7 @@ export default class MovieService {
       const response = await axios.get(MOVIES_BY_NAME + name); // if it does not work, try with the actual url instead of importing it
       if (response.status !== 200) {
         for (var movie in backup_movies) {
-          console.log(JSON.parse(movie));
+          console.log(movie);
         }
         return backup_movies; // Delete later
       }
