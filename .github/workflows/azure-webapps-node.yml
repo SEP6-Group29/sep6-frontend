@@ -29,7 +29,7 @@ env:
   NODE_VERSION: '14.x'                # set this to the node version to use
 
 permissions:
-  contents: read
+  contents: write #read
 
 jobs:
   build:
@@ -39,21 +39,30 @@ jobs:
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
-      with:
-        node-version: ${{ env.NODE_VERSION }}
-        cache: 'npm'
+      id: yarn-cache
+      run: echo "::set-output name=dir::(yarn cache dir)"
 
-    - name: npm install, build, and test
+    - uses: actions/cache@v1
+      with: 
+        path: ${{ steps.yarn-cache.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashfiles('**/yarn.lock')}}
+        restore-keys: |
+          ${{ runner.os }}-yarn-    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        
+    - name: yarn install, build
       run: |
-        npm install
-        npm run build --if-present
-        npm run test --if-present
+        yarn install
+        CI=false yarn build
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v3
       with:
         name: node-app
-        path: .
+        path: build
 
   deploy:
     permissions:
