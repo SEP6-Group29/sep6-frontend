@@ -1,10 +1,14 @@
 import React from "react";
 import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
-//import Movie from "../models/Movie.model";
+import Movie from "../models/Movie.model";
+
+type MovieProps = {
+  movie: Movie;
+};
 
 //TODO: Change type to model Movie
-const ResultCard = (movie: any) => {
+const ResultCard = (props: MovieProps) => {
   const {
     addMovieToWatchlist,
     addMovieToWatched,
@@ -15,9 +19,9 @@ const ResultCard = (movie: any) => {
   } = useContext(GlobalContext);
 
   // Find movie in different lists to enable/disable buttons
-  let storedMovie = watchlist.find((o) => o.id === movie.id);
-  let storedMovieWatched = watched.find((o) => o.id === movie.id);
-  let storedMovieFavourites = favourites.find((o) => o.id === movie.id);
+  let storedMovie = watchlist.find((o) => o.id === props.movie.id);
+  let storedMovieWatched = watched.find((o) => o.id === props.movie.id);
+  let storedMovieFavourites = favourites.find((o) => o.id === props.movie.id);
 
   // Booleans to enable/disable the buttons
   const watchlistDisabled = storedMovie
@@ -31,19 +35,19 @@ const ResultCard = (movie: any) => {
   return (
     <div className="result-card">
       <div className="poster-wrapper">
-        {movie.poster_path ? (
+        {props.movie.poster ? (
           <img
-            src={`https://image.tmdb.org./t/p/w200${movie.poster_path}`}
-            alt={movie.movieName}
+            src={`https://image.tmdb.org./t/p/w200${props.movie.poster}`}
+            alt={props.movie.title}
           />
         ) : (
           <div className="filler-poster"></div>
         )}
         <div className="info">
           <div className="header">
-            <h3 className="title">{movie.title}</h3>
+            <h3 className="title">{props.movie.title}</h3>
             <h4 className="release-date">
-              {movie.release_date ? movie.release_date.substring(0, 4) : "-"}
+              {props.movie.year /*? movie.year.substring(0, 4) : "-"*/}
             </h4>
           </div>
 
@@ -52,21 +56,21 @@ const ResultCard = (movie: any) => {
             <button
               className="button"
               disabled={watchlistDisabled}
-              onClick={() => addMovieToWatchlist(movie)}
+              onClick={() => addMovieToWatchlist(props.movie)}
             >
               Add to Watchlist
             </button>
             <button
               className="button"
               disabled={watchedDisabled}
-              onClick={() => addMovieToWatched(movie)}
+              onClick={() => addMovieToWatched(props.movie)}
             >
               Add to Watched
             </button>
             <button
               className="button"
               disabled={favouriteDisabled}
-              onClick={() => addMovieToFavourites(movie)}
+              onClick={() => addMovieToFavourites(props.movie)}
             >
               Add to Favourites
             </button>

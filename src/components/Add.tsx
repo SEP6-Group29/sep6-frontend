@@ -21,8 +21,9 @@ const Add = () => {
       let myMovies: Movie[] = movies;
       //setResults(movies);
       setResults(myMovies);
-      for (var m in myMovies) {
-        console.log("From onChange in the Add component!! " + m);
+      let m: Movie;
+      for (m of myMovies) {
+        console.log("From onChange in the Add component!! " + m.title);
       }
       //console.log("From onChange in the Add component: " + JSON.parse(movie));
     });
