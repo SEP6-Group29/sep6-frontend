@@ -1,7 +1,3 @@
-// This file contains the urls pointing to azure
-/* export const REACT_APP_AZURE_URL =
-  "https://movieapp-sep6.azurewebsites.net/api/movienames/1"; */
-
 /* MOVIES */
 export const BASE_URL_MOVIES =
   "https://movieapp-sep6.azurewebsites.net/api/movienames/getmovies";

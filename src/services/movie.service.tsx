@@ -65,4 +65,22 @@ export default class MovieService {
     console.log(movie);
     return movie;
   }
+
+  public async getMoviePoster(id: number): Promise<string | null> {
+    let moviePoster: string = "";
+
+    try {
+      /* Make call to OMDB or TMDB */
+      const response = await axios.get(/*api_url + */ "/ + id");
+      if (response.status !== 200) {
+        console.log("Poster of movie not found!");
+        return null;
+      }
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+
+    return moviePoster;
+  }
 }

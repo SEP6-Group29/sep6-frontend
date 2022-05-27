@@ -1,3 +1,5 @@
+import { SearchIcon } from "@chakra-ui/icons";
+import { Divider, Icon, Stack } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
 /* import "src/assets/icons8-romantic-movies-16.png"; */
@@ -18,16 +20,41 @@ const Header = () => {
 
           <ul className="nav-links">
             <li>
-              <Link to="/">Movies</Link>
+              <Link to="/movies">Movies</Link>
             </li>
+            <Stack direction="column" h="70px" p={4}>
+              <Divider orientation="vertical" />
+            </Stack>
+            <li>
+              <Link to="/">
+                Search <SearchIcon />
+              </Link>
+            </li>
+            <Stack direction="column" h="70px" p={4}>
+              <Divider orientation="vertical" />
+            </Stack>
             <li>
               <Link to="/WatchList">Watchlist</Link>
             </li>
+            <Stack direction="column" h="70px" p={4}>
+              <Divider orientation="vertical" />
+            </Stack>
             <li>
               <Link to="/watched">Watched</Link>
             </li>
+            <Stack direction="column" h="70px" p={4}>
+              <Divider orientation="vertical" />
+            </Stack>
             <li>
-              <Link to="/Favourites">Favourite Movies</Link>
+              <Link to="/favourites">
+                Favourites <Icon />
+              </Link>
+            </li>
+            <Stack direction="column" h="70px" p={4}>
+              <Divider orientation="vertical" />
+            </Stack>
+            <li>
+              <Link to="/stats">Stats</Link>
             </li>
           </ul>
         </div>

@@ -1,5 +1,7 @@
+import { Heading } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
+import Movie from "../models/Movie.model";
 import MovieCard from "./MovieCard";
 import Watched from "./Watched";
 
@@ -9,7 +11,8 @@ const Watchlist = () => {
     <div className="movie-page">
       <div className="container">
         <div className="header">
-          <h1 className="heading">My Watchlist</h1>
+          {/*<h1 className="heading">My Watchlist</h1>*/}
+          <Heading>Watchlist</Heading>
 
           <span className="count-pill">
             {watchlist.length}
@@ -19,8 +22,9 @@ const Watchlist = () => {
 
         {watchlist.length > 0 ? (
           <div className="movie-grid">
-            {watchlist.map((movie) => {
-              <MovieCard movie={movie} type={watchlist} />;
+            {watchlist.map((movie: Movie) => {
+              console.log(movie);
+              <MovieCard key={movie.id} movie={movie} type={watchlist} />;
             })}
           </div>
         ) : (
