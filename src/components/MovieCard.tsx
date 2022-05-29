@@ -1,20 +1,32 @@
 import React from "react";
+import Movie from "../models/Movie.model";
 import MovieControls from "./MovieControls";
 
-const MovieCard = ({ movie, type }) => {
+type MovieProps = {
+  movie: Movie;
+  type: string;
+};
+
+const MovieCard = (props: MovieProps) => {
+  console.log(
+    "From MovieCard - Favourites - props title: " +
+      props.movie.title +
+      "...and type: " +
+      props.type
+  );
   return (
     <div className="movie-card">
       <div className="overlay">
-        {movie.poster_path ? (
-          <img
-            src={`https://image.tmdb.org./t/p/w200${movie.poster_path}`}
-            alt={movie.movieName}
-          />
+        {props.movie.poster ? (
+          <>
+            <img src={props.movie.poster} alt={props.movie.title} />
+            <span>{props.movie.title}</span>
+          </>
         ) : (
-          <div className="filler-poster"></div>
+          <div className="filler-poster">Movie has no poster</div>
         )}
 
-        <MovieControls type={type} movie={movie} />
+        <MovieControls type={props.type} movie={props.movie} />
       </div>
     </div>
   );

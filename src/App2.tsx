@@ -10,6 +10,7 @@ import Add from "./components/Add";
 
 import { GlobalProvider } from "./context/GlobalState";
 import Watched from "./components/Watched";
+import MovieStats from "./components/MovieStats";
 //import "./lib/font-awesome/css/all.min";
 //import "src/lib/font-awesome/css/all.min.css";
 
@@ -23,6 +24,7 @@ function App2() {
         <Route path="/watchlist" element={<Watchlist />} />
         <Route path="/watched" element={<Watched />} />
         <Route path="/favourites" element={<AddFavourites />} />
+        <Route path="/stats" element={<MovieStats />} />
       </Routes>
     </GlobalProvider>
   );

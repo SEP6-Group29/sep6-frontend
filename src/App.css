@@ -263,6 +263,7 @@ header .nav-links li:last-child {
 
 .movie-card {
   width: 100%;
+  height: 300px;
   border-radius: 5px;
   overflow: hidden;
   position: relative;
