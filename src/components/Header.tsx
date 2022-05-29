@@ -1,5 +1,10 @@
 import React from "react";
+import { Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Login from "./Login";
+import Register from "./Register";
+
 /* import "src/assets/icons8-romantic-movies-16.png"; */
 
 const Header = () => {
@@ -16,7 +21,7 @@ const Header = () => {
             </Link>
           </div>
 
-          <ul className="nav-links">
+          <ul className="nav-links">         
             <li>
               <Link to="/">Movies</Link>
             </li>
@@ -28,7 +33,16 @@ const Header = () => {
             </li>
             <li>
               <Link to="/Favourites">Favourite Movies</Link>
+            </li>           
+            <li>
+              <Link to="/login">Login</Link>             
             </li>
+            <li>
+            <Link to="/register">Register</Link>             
+            </li>
+            <main className="form-signin">
+             
+             </main>
           </ul>
         </div>
       </div>

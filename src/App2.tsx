@@ -4,6 +4,8 @@ import AddFavourites from "./components/AddToFavourites";
 import Header from "./components/Header";
 import MovieList from "./components/MovieList";
 import Watchlist from "./components/Watchlist";
+import Register from "./components/Register";
+import Login from "./components/Login";
 
 import "./App.css";
 import Add from "./components/Add";
@@ -23,6 +25,8 @@ function App2() {
         <Route path="/watchlist" element={<Watchlist />} />
         <Route path="/watched" element={<Watched />} />
         <Route path="/favourites" element={<AddFavourites />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </GlobalProvider>
   );
