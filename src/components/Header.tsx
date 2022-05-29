@@ -1,3 +1,5 @@
+import { SearchIcon } from "@chakra-ui/icons";
+import { Divider, Icon, Stack } from "@chakra-ui/react";
 import React from "react";
 import { Route } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
@@ -23,14 +25,39 @@ const Header = () => {
 
           <ul className="nav-links">         
             <li>
-              <Link to="/">Movies</Link>
+              <Link to="/movies">Movies</Link>
             </li>
+            <Stack direction="column" h="70px" p={4}>
+              <Divider orientation="vertical" />
+            </Stack>
+            <li>
+              <Link to="/">
+                Search <SearchIcon />
+              </Link>
+            </li>
+            <Stack direction="column" h="70px" p={4}>
+              <Divider orientation="vertical" />
+            </Stack>
             <li>
               <Link to="/WatchList">Watchlist</Link>
             </li>
+            <Stack direction="column" h="70px" p={4}>
+              <Divider orientation="vertical" />
+            </Stack>
             <li>
               <Link to="/watched">Watched</Link>
             </li>
+            <Stack direction="column" h="70px" p={4}>
+              <Divider orientation="vertical" />
+            </Stack>
+            <li>
+              <Link to="/favourites">
+                Favourites <Icon />
+              </Link>
+            </li>
+            <Stack direction="column" h="70px" p={4}>
+              <Divider orientation="vertical" />
+            </Stack>
             <li>
               <Link to="/Favourites">Favourite Movies</Link>
             </li>           
@@ -39,6 +66,7 @@ const Header = () => {
             </li>
             <li>
             <Link to="/register">Register</Link>             
+              <Link to="/stats">Stats</Link>
             </li>
             <main className="form-signin">
              

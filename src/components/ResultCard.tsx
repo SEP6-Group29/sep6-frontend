@@ -1,3 +1,4 @@
+import { Button } from "@chakra-ui/react";
 import React from "react";
 import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
@@ -53,27 +54,51 @@ const ResultCard = (props: MovieProps) => {
 
           <div className="controls">
             {/*TODO: Use Button component from ChackraUI*/}
-            <button
+            {/*<button
               className="button"
               disabled={watchlistDisabled}
               onClick={() => addMovieToWatchlist(props.movie)}
             >
               Add to Watchlist
-            </button>
-            <button
+        </button>*/}
+            <Button
+              colorScheme="green"
+              size="md"
+              disabled={watchlistDisabled}
+              onClick={() => addMovieToWatchlist(props.movie)}
+            >
+              Add to Watchlist
+            </Button>
+            {/*<button
               className="button"
               disabled={watchedDisabled}
               onClick={() => addMovieToWatched(props.movie)}
             >
               Add to Watched
-            </button>
-            <button
+    </button>*/}
+            <Button
+              colorScheme="green"
+              size="md"
+              disabled={watchedDisabled}
+              onClick={() => addMovieToWatched(props.movie)}
+            >
+              Add to Watched
+            </Button>
+            {/*<button
               className="button"
               disabled={favouriteDisabled}
               onClick={() => addMovieToFavourites(props.movie)}
             >
               Add to Favourites
-            </button>
+</button>*/}
+            <Button
+              colorScheme="green"
+              size="md"
+              disabled={favouriteDisabled}
+              onClick={() => addMovieToFavourites(props.movie)}
+            >
+              Add to Favourites
+            </Button>
           </div>
         </div>
       </div>
