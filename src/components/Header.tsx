@@ -1,7 +1,12 @@
 import { SearchIcon } from "@chakra-ui/icons";
 import { Divider, Icon, Stack } from "@chakra-ui/react";
 import React from "react";
+import { Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Login from "./Login";
+import Register from "./Register";
+
 /* import "src/assets/icons8-romantic-movies-16.png"; */
 
 const Header = () => {
@@ -18,7 +23,7 @@ const Header = () => {
             </Link>
           </div>
 
-          <ul className="nav-links">
+          <ul className="nav-links">         
             <li>
               <Link to="/movies">Movies</Link>
             </li>
@@ -54,8 +59,18 @@ const Header = () => {
               <Divider orientation="vertical" />
             </Stack>
             <li>
+              <Link to="/Favourites">Favourite Movies</Link>
+            </li>           
+            <li>
+              <Link to="/login">Login</Link>             
+            </li>
+            <li>
+            <Link to="/register">Register</Link>             
               <Link to="/stats">Stats</Link>
             </li>
+            <main className="form-signin">
+             
+             </main>
           </ul>
         </div>
       </div>
