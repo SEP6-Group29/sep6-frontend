@@ -7,6 +7,7 @@ import Watched from "./Watched";
 
 const Watchlist = () => {
   const { watchlist } = useContext(GlobalContext);
+  console.log("FROM WATCHLIST: " + watchlist);
   return (
     <div className="movie-page">
       <div className="container">
@@ -24,7 +25,9 @@ const Watchlist = () => {
           <div className="movie-grid">
             {watchlist.map((movie: Movie) => {
               console.log(movie);
-              <MovieCard key={movie.id} movie={movie} type={watchlist} />;
+              return (
+                <MovieCard key={movie.id} movie={movie} type={watchlist} />
+              );
             })}
           </div>
         ) : (

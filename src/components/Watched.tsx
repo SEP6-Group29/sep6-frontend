@@ -5,6 +5,7 @@ import MovieCard from "./MovieCard";
 
 const Watched = () => {
   const { watched } = useContext(GlobalContext);
+  console.log("FROM WATCHED: " + watched);
   return (
     <div className="movie-page">
       <div className="container">
@@ -20,7 +21,7 @@ const Watched = () => {
         {watched && watched.length > 0 ? (
           <div className="movie-grid">
             {watched.map((movie) => {
-              <MovieCard movie={movie} type={watched} />;
+              return <MovieCard movie={movie} type={watched} />;
             })}
           </div>
         ) : (

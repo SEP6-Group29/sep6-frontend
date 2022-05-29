@@ -1,4 +1,4 @@
-import { Heading } from "@chakra-ui/react";
+import { Grid, Heading } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import Movie from "../models/Movie.model";
@@ -6,6 +6,7 @@ import MovieCard from "./MovieCard";
 
 const AddFavourites = () => {
   const { favourites } = useContext(GlobalContext);
+  console.log(favourites);
 
   return (
     <>
@@ -34,12 +35,12 @@ const AddFavourites = () => {
             </span>
           </div>
 
-          {favourites && favourites.length > 0 ? (
-            <div className="movie-grid">
+          {favourites.length > 0 ? (
+            <Grid templateColumns="repeat(4, 1fr)" gap={6}>
               {favourites.map((movie: Movie) => {
-                <MovieCard movie={movie} type={favourites} />;
+                return <MovieCard movie={movie} type={favourites} />;
               })}
-            </div>
+            </Grid>
           ) : (
             <h2 className="no-movies">You don't like any movies :(</h2>
           )}

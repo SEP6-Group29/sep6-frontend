@@ -22,13 +22,19 @@ const MovieList = (props: any) => {
   */
   return (
     <div>
-      <Grid templateColumns="repeat(5, 1fr)" gap={4}>
+      <Grid templateColumns="repeat(4, 1fr)" gap={4} paddingTop="20px">
         {/*<GridItem colSpan={2} h="10" bg="tomato" />
         <GridItem colStart={4} colEnd={6} h="10" bg="papayawhip" />*/}
 
-        <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
+        {/* Element 1 */}
+        <Box
+          maxW="sm"
+          borderWidth="1px"
+          borderRadius="lg"
+          overflow="hidden"
+          marginLeft="20px"
+        >
           <Image src={property.imageUrl} alt={property.imageAlt} />
-
           <Box p="6">
             <Box display="flex" alignItems="baseline">
               <Badge borderRadius="full" px="2" colorScheme="teal">
@@ -78,9 +84,10 @@ const MovieList = (props: any) => {
             </Box>
           </Box>
         </Box>
+
+        {/* Element 2 */}
         <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
           <Image src={property.imageUrl} alt={property.imageAlt} />
-
           <Box p="6">
             <Box display="flex" alignItems="baseline">
               <Badge borderRadius="full" px="2" colorScheme="teal">
@@ -130,9 +137,10 @@ const MovieList = (props: any) => {
             </Box>
           </Box>
         </Box>
+
+        {/* Element 3 */}
         <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
           <Image src={property.imageUrl} alt={property.imageAlt} />
-
           <Box p="6">
             <Box display="flex" alignItems="baseline">
               <Badge borderRadius="full" px="2" colorScheme="teal">
@@ -182,9 +190,10 @@ const MovieList = (props: any) => {
             </Box>
           </Box>
         </Box>
+
+        {/* Element 4 */}
         <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
           <Image src={property.imageUrl} alt={property.imageAlt} />
-
           <Box p="6">
             <Box display="flex" alignItems="baseline">
               <Badge borderRadius="full" px="2" colorScheme="teal">
@@ -234,9 +243,17 @@ const MovieList = (props: any) => {
             </Box>
           </Box>
         </Box>
-        <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
-          <Image src={property.imageUrl} alt={property.imageAlt} />
 
+        {/* Element 5 */}
+        <Box
+          maxW="sm"
+          borderWidth="1px"
+          borderRadius="lg"
+          overflow="hidden"
+          marginLeft="20px"
+          marginBottom="20px"
+        >
+          <Image src={property.imageUrl} alt={property.imageAlt} />
           <Box p="6">
             <Box display="flex" alignItems="baseline">
               <Badge borderRadius="full" px="2" colorScheme="teal">
@@ -286,9 +303,16 @@ const MovieList = (props: any) => {
             </Box>
           </Box>
         </Box>
-        <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
-          <Image src={property.imageUrl} alt={property.imageAlt} />
 
+        {/* Element 6 */}
+        <Box
+          maxW="sm"
+          borderWidth="1px"
+          borderRadius="lg"
+          overflow="hidden"
+          marginBottom="20px"
+        >
+          <Image src={property.imageUrl} alt={property.imageAlt} />
           <Box p="6">
             <Box display="flex" alignItems="baseline">
               <Badge borderRadius="full" px="2" colorScheme="teal">
@@ -338,9 +362,16 @@ const MovieList = (props: any) => {
             </Box>
           </Box>
         </Box>
-        <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
-          <Image src={property.imageUrl} alt={property.imageAlt} />
 
+        {/* Element 7 */}
+        <Box
+          maxW="sm"
+          borderWidth="1px"
+          borderRadius="lg"
+          overflow="hidden"
+          marginBottom="20px"
+        >
+          <Image src={property.imageUrl} alt={property.imageAlt} />
           <Box p="6">
             <Box display="flex" alignItems="baseline">
               <Badge borderRadius="full" px="2" colorScheme="teal">
@@ -390,9 +421,16 @@ const MovieList = (props: any) => {
             </Box>
           </Box>
         </Box>
-        <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
-          <Image src={property.imageUrl} alt={property.imageAlt} />
 
+        {/* Element 8 */}
+        <Box
+          maxW="sm"
+          borderWidth="1px"
+          borderRadius="lg"
+          overflow="hidden"
+          marginBottom="20px"
+        >
+          <Image src={property.imageUrl} alt={property.imageAlt} />
           <Box p="6">
             <Box display="flex" alignItems="baseline">
               <Badge borderRadius="full" px="2" colorScheme="teal">

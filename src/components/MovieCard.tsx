@@ -8,17 +8,22 @@ type MovieProps = {
 };
 
 const MovieCard = (props: MovieProps) => {
-  console.log("From MovieCard - Favourites - props: " + props);
+  console.log(
+    "From MovieCard - Favourites - props title: " +
+      props.movie.title +
+      "...and type: " +
+      props.type
+  );
   return (
     <div className="movie-card">
       <div className="overlay">
         {props.movie.poster ? (
-          <img
-            src={`https://image.tmdb.org./t/p/w200${props.movie.poster}`}
-            alt={props.movie.title}
-          />
+          <>
+            <img src={props.movie.poster} alt={props.movie.title} />
+            <span>{props.movie.title}</span>
+          </>
         ) : (
-          <div className="filler-poster"></div>
+          <div className="filler-poster">Movie has no poster</div>
         )}
 
         <MovieControls type={props.type} movie={props.movie} />
