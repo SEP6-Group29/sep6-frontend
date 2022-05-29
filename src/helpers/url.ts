@@ -11,6 +11,9 @@ export const MOVIES_BY_NAME =
 export const MOVIE_BY_ID =
   "https://movieapp-sep6.azurewebsites.net/api/movienames/getmovies/"; // getting movie by id, for when clicking on a movie to get more info
 
+export const TOP_MOVIES =
+  "https://movieapp-sep6.azurewebsites.net/api/movienames/getmovies/topmovies"; // getting 8 movies to display in the main page
+
 export const disney_icon_top =
   "https://img.icons8.com/fluency/48/000000/disney-1.png";
 

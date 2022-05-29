@@ -1,10 +1,21 @@
 import { StarIcon } from "@chakra-ui/icons";
 import { Box, Image, Badge, Grid, GridItem } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import Movie from "../models/Movie.model";
+import MovieService from "../services/movie.service";
 
 const MovieList = (props: any) => {
-  const property = {
+  const movieService: MovieService = new MovieService();
+
+  const [topMovies, setTopMovies] = useState<Movie[]>([]);
+
+  movieService.GetTopMovies().then((movies) => {
+    let myTopMovies: Movie[] = movies;
+
+    setTopMovies(myTopMovies);
+  });
+
+  /*  const property = {
     imageUrl: "https://bit.ly/2Z4KKcF",
     imageAlt: "Rear view of modern home with pool",
     beds: 3,
@@ -13,473 +24,54 @@ const MovieList = (props: any) => {
     formattedPrice: "$1,900.00",
     reviewCount: 34,
     rating: 4,
-  };
+  };*/
   //const FavouriteComponent = props.favouriteComponent;
   /*
-  * TODO: 
+  * TODO:
     - Make a 2x2 table with movies
     - Substitute with movies from call to api
   */
   return (
     <div>
       <Grid templateColumns="repeat(4, 1fr)" gap={4} paddingTop="20px">
-        {/*<GridItem colSpan={2} h="10" bg="tomato" />
-        <GridItem colStart={4} colEnd={6} h="10" bg="papayawhip" />*/}
-
-        {/* Element 1 */}
-        <Box
-          maxW="sm"
-          borderWidth="1px"
-          borderRadius="lg"
-          overflow="hidden"
-          marginLeft="20px"
-        >
-          <Image src={property.imageUrl} alt={property.imageAlt} />
-          <Box p="6">
-            <Box display="flex" alignItems="baseline">
-              <Badge borderRadius="full" px="2" colorScheme="teal">
-                New
-              </Badge>
+        {topMovies.map((movie) => (
+          <Box
+            maxW="sm"
+            borderWidth="1px"
+            borderRadius="lg"
+            overflow="hidden"
+            marginLeft="20px"
+          >
+            <Image src={movie.poster} alt={movie.title} />
+            <Box p="6">
               <Box
-                color="gray.500"
+                mt="1"
                 fontWeight="semibold"
-                letterSpacing="wide"
-                fontSize="xs"
-                textTransform="uppercase"
-                ml="2"
+                as="h4"
+                lineHeight="tight"
+                noOfLines={1}
               >
-                {property.beds} beds &bull; {property.baths} baths
+                {movie.title}
               </Box>
-            </Box>
 
-            <Box
-              mt="1"
-              fontWeight="semibold"
-              as="h4"
-              lineHeight="tight"
-              noOfLines={1}
-            >
-              {property.title}
-            </Box>
+              <Box>{movie.year}</Box>
 
-            <Box>
-              {property.formattedPrice}
-              <Box as="span" color="gray.600" fontSize="sm">
-                / wk
-              </Box>
-            </Box>
-
-            <Box display="flex" mt="2" alignItems="center">
-              {Array(5)
-                .fill("")
-                .map((_, i) => (
-                  <StarIcon
-                    key={i}
-                    color={i < property.rating ? "teal.500" : "gray.300"}
-                  />
-                ))}
-              <Box as="span" ml="2" color="gray.600" fontSize="sm">
-                {property.reviewCount} reviews
+              <Box display="flex" mt="2" alignItems="center">
+                {Array(5)
+                  .fill("")
+                  .map((_, i) => (
+                    <StarIcon
+                      key={i}
+                      color={i < movie.rating ? "teal.500" : "gray.300"}
+                    />
+                  ))}
+                <Box as="span" ml="2" color="gray.600" fontSize="sm">
+                  {movie.rating} 4/5
+                </Box>
               </Box>
             </Box>
           </Box>
-        </Box>
-
-        {/* Element 2 */}
-        <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
-          <Image src={property.imageUrl} alt={property.imageAlt} />
-          <Box p="6">
-            <Box display="flex" alignItems="baseline">
-              <Badge borderRadius="full" px="2" colorScheme="teal">
-                New
-              </Badge>
-              <Box
-                color="gray.500"
-                fontWeight="semibold"
-                letterSpacing="wide"
-                fontSize="xs"
-                textTransform="uppercase"
-                ml="2"
-              >
-                {property.beds} beds &bull; {property.baths} baths
-              </Box>
-            </Box>
-
-            <Box
-              mt="1"
-              fontWeight="semibold"
-              as="h4"
-              lineHeight="tight"
-              noOfLines={1}
-            >
-              {property.title}
-            </Box>
-
-            <Box>
-              {property.formattedPrice}
-              <Box as="span" color="gray.600" fontSize="sm">
-                / wk
-              </Box>
-            </Box>
-
-            <Box display="flex" mt="2" alignItems="center">
-              {Array(5)
-                .fill("")
-                .map((_, i) => (
-                  <StarIcon
-                    key={i}
-                    color={i < property.rating ? "teal.500" : "gray.300"}
-                  />
-                ))}
-              <Box as="span" ml="2" color="gray.600" fontSize="sm">
-                {property.reviewCount} reviews
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-
-        {/* Element 3 */}
-        <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
-          <Image src={property.imageUrl} alt={property.imageAlt} />
-          <Box p="6">
-            <Box display="flex" alignItems="baseline">
-              <Badge borderRadius="full" px="2" colorScheme="teal">
-                New
-              </Badge>
-              <Box
-                color="gray.500"
-                fontWeight="semibold"
-                letterSpacing="wide"
-                fontSize="xs"
-                textTransform="uppercase"
-                ml="2"
-              >
-                {property.beds} beds &bull; {property.baths} baths
-              </Box>
-            </Box>
-
-            <Box
-              mt="1"
-              fontWeight="semibold"
-              as="h4"
-              lineHeight="tight"
-              noOfLines={1}
-            >
-              {property.title}
-            </Box>
-
-            <Box>
-              {property.formattedPrice}
-              <Box as="span" color="gray.600" fontSize="sm">
-                / wk
-              </Box>
-            </Box>
-
-            <Box display="flex" mt="2" alignItems="center">
-              {Array(5)
-                .fill("")
-                .map((_, i) => (
-                  <StarIcon
-                    key={i}
-                    color={i < property.rating ? "teal.500" : "gray.300"}
-                  />
-                ))}
-              <Box as="span" ml="2" color="gray.600" fontSize="sm">
-                {property.reviewCount} reviews
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-
-        {/* Element 4 */}
-        <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
-          <Image src={property.imageUrl} alt={property.imageAlt} />
-          <Box p="6">
-            <Box display="flex" alignItems="baseline">
-              <Badge borderRadius="full" px="2" colorScheme="teal">
-                New
-              </Badge>
-              <Box
-                color="gray.500"
-                fontWeight="semibold"
-                letterSpacing="wide"
-                fontSize="xs"
-                textTransform="uppercase"
-                ml="2"
-              >
-                {property.beds} beds &bull; {property.baths} baths
-              </Box>
-            </Box>
-
-            <Box
-              mt="1"
-              fontWeight="semibold"
-              as="h4"
-              lineHeight="tight"
-              noOfLines={1}
-            >
-              {property.title}
-            </Box>
-
-            <Box>
-              {property.formattedPrice}
-              <Box as="span" color="gray.600" fontSize="sm">
-                / wk
-              </Box>
-            </Box>
-
-            <Box display="flex" mt="2" alignItems="center">
-              {Array(5)
-                .fill("")
-                .map((_, i) => (
-                  <StarIcon
-                    key={i}
-                    color={i < property.rating ? "teal.500" : "gray.300"}
-                  />
-                ))}
-              <Box as="span" ml="2" color="gray.600" fontSize="sm">
-                {property.reviewCount} reviews
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-
-        {/* Element 5 */}
-        <Box
-          maxW="sm"
-          borderWidth="1px"
-          borderRadius="lg"
-          overflow="hidden"
-          marginLeft="20px"
-          marginBottom="20px"
-        >
-          <Image src={property.imageUrl} alt={property.imageAlt} />
-          <Box p="6">
-            <Box display="flex" alignItems="baseline">
-              <Badge borderRadius="full" px="2" colorScheme="teal">
-                New
-              </Badge>
-              <Box
-                color="gray.500"
-                fontWeight="semibold"
-                letterSpacing="wide"
-                fontSize="xs"
-                textTransform="uppercase"
-                ml="2"
-              >
-                {property.beds} beds &bull; {property.baths} baths
-              </Box>
-            </Box>
-
-            <Box
-              mt="1"
-              fontWeight="semibold"
-              as="h4"
-              lineHeight="tight"
-              noOfLines={1}
-            >
-              {property.title}
-            </Box>
-
-            <Box>
-              {property.formattedPrice}
-              <Box as="span" color="gray.600" fontSize="sm">
-                / wk
-              </Box>
-            </Box>
-
-            <Box display="flex" mt="2" alignItems="center">
-              {Array(5)
-                .fill("")
-                .map((_, i) => (
-                  <StarIcon
-                    key={i}
-                    color={i < property.rating ? "teal.500" : "gray.300"}
-                  />
-                ))}
-              <Box as="span" ml="2" color="gray.600" fontSize="sm">
-                {property.reviewCount} reviews
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-
-        {/* Element 6 */}
-        <Box
-          maxW="sm"
-          borderWidth="1px"
-          borderRadius="lg"
-          overflow="hidden"
-          marginBottom="20px"
-        >
-          <Image src={property.imageUrl} alt={property.imageAlt} />
-          <Box p="6">
-            <Box display="flex" alignItems="baseline">
-              <Badge borderRadius="full" px="2" colorScheme="teal">
-                New
-              </Badge>
-              <Box
-                color="gray.500"
-                fontWeight="semibold"
-                letterSpacing="wide"
-                fontSize="xs"
-                textTransform="uppercase"
-                ml="2"
-              >
-                {property.beds} beds &bull; {property.baths} baths
-              </Box>
-            </Box>
-
-            <Box
-              mt="1"
-              fontWeight="semibold"
-              as="h4"
-              lineHeight="tight"
-              noOfLines={1}
-            >
-              {property.title}
-            </Box>
-
-            <Box>
-              {property.formattedPrice}
-              <Box as="span" color="gray.600" fontSize="sm">
-                / wk
-              </Box>
-            </Box>
-
-            <Box display="flex" mt="2" alignItems="center">
-              {Array(5)
-                .fill("")
-                .map((_, i) => (
-                  <StarIcon
-                    key={i}
-                    color={i < property.rating ? "teal.500" : "gray.300"}
-                  />
-                ))}
-              <Box as="span" ml="2" color="gray.600" fontSize="sm">
-                {property.reviewCount} reviews
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-
-        {/* Element 7 */}
-        <Box
-          maxW="sm"
-          borderWidth="1px"
-          borderRadius="lg"
-          overflow="hidden"
-          marginBottom="20px"
-        >
-          <Image src={property.imageUrl} alt={property.imageAlt} />
-          <Box p="6">
-            <Box display="flex" alignItems="baseline">
-              <Badge borderRadius="full" px="2" colorScheme="teal">
-                New
-              </Badge>
-              <Box
-                color="gray.500"
-                fontWeight="semibold"
-                letterSpacing="wide"
-                fontSize="xs"
-                textTransform="uppercase"
-                ml="2"
-              >
-                {property.beds} beds &bull; {property.baths} baths
-              </Box>
-            </Box>
-
-            <Box
-              mt="1"
-              fontWeight="semibold"
-              as="h4"
-              lineHeight="tight"
-              noOfLines={1}
-            >
-              {property.title}
-            </Box>
-
-            <Box>
-              {property.formattedPrice}
-              <Box as="span" color="gray.600" fontSize="sm">
-                / wk
-              </Box>
-            </Box>
-
-            <Box display="flex" mt="2" alignItems="center">
-              {Array(5)
-                .fill("")
-                .map((_, i) => (
-                  <StarIcon
-                    key={i}
-                    color={i < property.rating ? "teal.500" : "gray.300"}
-                  />
-                ))}
-              <Box as="span" ml="2" color="gray.600" fontSize="sm">
-                {property.reviewCount} reviews
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-
-        {/* Element 8 */}
-        <Box
-          maxW="sm"
-          borderWidth="1px"
-          borderRadius="lg"
-          overflow="hidden"
-          marginBottom="20px"
-        >
-          <Image src={property.imageUrl} alt={property.imageAlt} />
-          <Box p="6">
-            <Box display="flex" alignItems="baseline">
-              <Badge borderRadius="full" px="2" colorScheme="teal">
-                New
-              </Badge>
-              <Box
-                color="gray.500"
-                fontWeight="semibold"
-                letterSpacing="wide"
-                fontSize="xs"
-                textTransform="uppercase"
-                ml="2"
-              >
-                {property.beds} beds &bull; {property.baths} baths
-              </Box>
-            </Box>
-
-            <Box
-              mt="1"
-              fontWeight="semibold"
-              as="h4"
-              lineHeight="tight"
-              noOfLines={1}
-            >
-              {property.title}
-            </Box>
-
-            <Box>
-              {property.formattedPrice}
-              <Box as="span" color="gray.600" fontSize="sm">
-                / wk
-              </Box>
-            </Box>
-
-            <Box display="flex" mt="2" alignItems="center">
-              {Array(5)
-                .fill("")
-                .map((_, i) => (
-                  <StarIcon
-                    key={i}
-                    color={i < property.rating ? "teal.500" : "gray.300"}
-                  />
-                ))}
-              <Box as="span" ml="2" color="gray.600" fontSize="sm">
-                {property.reviewCount} reviews
-              </Box>
-            </Box>
-          </Box>
-        </Box>
+        ))}
       </Grid>
     </div>
   );
