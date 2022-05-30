@@ -29,10 +29,10 @@ const MovieList = (props: any) => {
       const movieResponse = fetch(`http://www.omdbapi.com/?t=${formatTitle}&apikey=97352ccd`)
       .then(res=> res.json())
       .then(data=>movie.poster = data.Poster)
-
+      console.log(movieResponse)
     })
       }, topMovies)
-
+      
   console.log(topMovies)
 
   // return (
