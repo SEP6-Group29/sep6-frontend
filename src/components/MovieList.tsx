@@ -14,26 +14,34 @@ const MovieList = (props: any) => {
   //   let myTopMovies: Movie[] = movies;
 
   //   setTopMovies(myTopMovies);
-  const [topMovies, setTopMovies] = useState<any[]>([]);
+  const [topMovies, setTopMovies] = useState<Movie[]>([]);
 
   // useEffect runs when component mounts and sets the state when request completes
   useEffect(() => {
     fetch("https://movieapp-sep6.azurewebsites.net/api/movienames/topmovies")
-    .then(res => res.json())
-    .then(data => setTopMovies(data))
-  }, [])
+      .then((res) => res.json())
+      .then((data) => setTopMovies(data));
+  }, []);
 
-  useEffect(()=>{
-    topMovies.map((movie)=>{
+  useEffect(() => {
+    topMovies.map((movie) => {
       let formatTitle = movie.title.replaceAll(" ", "+");
-      const movieResponse = fetch(`http://www.omdbapi.com/?t=${formatTitle}&apikey=97352ccd`)
-      .then(res=> res.json())
-      .then(data=>movie.poster = data.Poster)
-      console.log(movieResponse)
-    })
-      }, topMovies)
-      
-  console.log(topMovies)
+      const movieResponse = fetch(
+        `http://www.omdbapi.com/?t=${formatTitle}&apikey=97352ccd`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          movie.poster = data.Poster;
+          movie.rating = data.imdbRating;
+        });
+      console.log("MovieResponse:" + movieResponse);
+      console.log("TITLE: " + movie.title);
+      console.log("POSTER: " + movie.poster);
+      console.log("RATING: " + movie.rating);
+    });
+  }, topMovies);
+
+  console.log(topMovies);
 
   // return (
   //   <div className="App">
@@ -42,53 +50,53 @@ const MovieList = (props: any) => {
   //   </div>
   // )
 
-//   });
+  //   });
 
-   return (
-     <div>
-       <Heading textAlign="center" marginTop="20px" marginBottom="20px">
-         Top rated movies
-       </Heading>
-       <Grid templateColumns="repeat(4, 1fr)" gap={4} paddingTop="20px">
-         {topMovies ? topMovies.map(item=>
-         
-           <Box
-             key={item.id}
-             maxW="sm"
-             borderWidth="1px"
-             borderRadius="lg"
-             overflow="hidden"
-             marginLeft="20px"
-           >
-             {/*<Image src={movie.poster} alt={movie.title} />*/}
-             <img src={item.poster} alt={item.title} />
-             <Box p="6">
-               <Box
-                 mt="1"
-                 fontWeight="semibold"
-                 as="h4"
-                 lineHeight="tight"
-                 noOfLines={1}
-               >
-                 {item.title}
-               </Box>
+  return (
+    <div>
+      <Heading textAlign="center" marginTop="20px" marginBottom="20px">
+        Top rated movies
+      </Heading>
+      <Grid templateColumns="repeat(4, 1fr)" gap={4} paddingTop="20px">
+        {topMovies
+          ? topMovies.map((item) => (
+              <Box
+                key={item.id}
+                maxW="sm"
+                borderWidth="1px"
+                borderRadius="lg"
+                overflow="hidden"
+                marginLeft="20px"
+              >
+                <Image src={item.poster} alt={item.title} />
+                {/*<img src={item.poster} alt={item.title} />*/}
+                <Box p="6">
+                  <Box
+                    mt="1"
+                    fontWeight="semibold"
+                    as="h4"
+                    lineHeight="tight"
+                    noOfLines={1}
+                  >
+                    {item.title} {item.rating}
+                  </Box>
 
-               <Box>{item.year}</Box>
+                  <Box>{item.year}</Box>
 
-               <Box display="flex" mt="2" alignItems="center">
-                 <StarIcon color="teal.500" />
-                 <Box as="span" ml="2" color="gray.600" fontSize="sm">
-                   {item.rating}
-                 </Box>
-               </Box>
-             </Box>
-           </Box>
-         )
-         :null}
-       </Grid>
-     </div>
-   );
- };
+                  <Box display="flex" mt="2" alignItems="center">
+                    <StarIcon color="teal.500" />
+                    <Box as="span" ml="2" color="gray.600" fontSize="sm">
+                      {item.rating}
+                    </Box>
+                  </Box>
+                </Box>
+              </Box>
+            ))
+          : null}
+      </Grid>
+    </div>
+  );
+};
 //   const movieService: MovieService = new MovieService();
 
 //   const [topMovies, setTopMovies] = useState<Movie[]>([]);
