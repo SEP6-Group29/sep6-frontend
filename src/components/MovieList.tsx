@@ -84,7 +84,7 @@ const MovieList = (props: any) => {
                   <Box>{item.year}</Box>
 
                   <Box display="flex" mt="2" alignItems="center">
-                    <StarIcon color="teal.500" />
+                    <StarIcon color="#FAD02C" />
                     <Box as="span" ml="2" color="gray.600" fontSize="sm">
                       {item.rating}
                     </Box>
