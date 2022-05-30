@@ -23,7 +23,9 @@ const MovieCard = (props: MovieProps) => {
             <span>{props.movie.title}</span>
           </>
         ) : (
-          <div className="filler-poster">Movie has no poster</div>
+          <div className="filler-poster">
+            {props.movie.title} - Movie has no poster
+          </div>
         )}
 
         <MovieControls type={props.type} movie={props.movie} />

@@ -23,7 +23,7 @@ const Header = () => {
             </Link>
           </div>
 
-          <ul className="nav-links">         
+          <ul className="nav-links">
             <li>
               <Link to="/movies">Movies</Link>
             </li>
@@ -59,17 +59,12 @@ const Header = () => {
               <Divider orientation="vertical" />
             </Stack>
             <li>
-              <Link to="/Favourites">Favourite Movies</Link>
-            </li>           
-            <li>
-              <Link to="/login">Login</Link>             
+              <Link to="/login">Login</Link>
             </li>
             <li>                     
               <Link to="/stats">Stats</Link>
             </li>
-            <main className="form-signin">
-             
-             </main>
+            <main className="form-signin"></main>
           </ul>
         </div>
       </div>

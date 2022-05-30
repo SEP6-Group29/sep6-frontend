@@ -1,5 +1,5 @@
 import { StarIcon } from "@chakra-ui/icons";
-import { Box, Image, Badge, Grid, GridItem } from "@chakra-ui/react";
+import { Box, Image, Badge, Grid, GridItem, Heading } from "@chakra-ui/react";
 import React, { useState } from "react";
 import Movie from "../models/Movie.model";
 import MovieService from "../services/movie.service";
@@ -26,13 +26,12 @@ const MovieList = (props: any) => {
     rating: 4,
   };*/
   //const FavouriteComponent = props.favouriteComponent;
-  /*
-  * TODO:
-    - Make a 2x2 table with movies
-    - Substitute with movies from call to api
-  */
+  console.log(topMovies);
   return (
     <div>
+      <Heading textAlign="center" marginTop="20px" marginBottom="20px">
+        Top rated movies
+      </Heading>
       <Grid templateColumns="repeat(4, 1fr)" gap={4} paddingTop="20px">
         {topMovies.map((movie) => (
           <Box
@@ -66,7 +65,7 @@ const MovieList = (props: any) => {
                     />
                   ))}
                 <Box as="span" ml="2" color="gray.600" fontSize="sm">
-                  {movie.rating} 4/5
+                  {movie.rating}
                 </Box>
               </Box>
             </Box>
