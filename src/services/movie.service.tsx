@@ -20,14 +20,12 @@ export default class MovieService {
 
       movieList = response.data;
 
-      // Make a request to get movie poster from OMDB
+      //poster from OMDB
       movieList.map(async (movie) => {
-        let formatTitle = movie.title.replace(" ", "+");
-        console.log("Format title: " + formatTitle);
-        const omdb_response = await axios.get(
-          `http://www.omdbapi.com/?t=${formatTitle}&api_key=${process.env.REACT_APP_OMDB_KEY}`
+        const movieTitle = await Promise.resolve(
+          this.getMoviePoster(movie.title)
         );
-        movie.title = omdb_response.data.poster;
+        movie.poster = movieTitle;
       });
     } catch (error) {
       console.log(error);
@@ -51,21 +49,15 @@ export default class MovieService {
 
       movieList = response.data;
 
-      // Make a request to get movie poster from OMDB
+      // poster from OMDB
+
       movieList.map(async (movie) => {
-        let formatTitle = movie.title.replace(" ", "+");
-        console.log("Format title: " + formatTitle);
-        const omdb_response = await axios.get(
-          `http://www.omdbapi.com/?t=${formatTitle}&api_key=${process.env.REACT_APP_OMDB_KEY}`
+        const movieTitle = await Promise.resolve(
+          this.getMoviePoster(movie.title)
         );
-        movie.title = omdb_response.data.poster;
+        movie.poster = movieTitle;
       });
     } catch (error) {
-      console.log(error);
-      console.log("FROM getMoviesByName inside catch...");
-      for (var movie in backup_movies) {
-        console.log(movie);
-      }
       return backup_movies;
     }
 
@@ -78,33 +70,43 @@ export default class MovieService {
 
     try {
       const response = await axios.get(MOVIE_BY_ID + "/" + id);
+
       if (response.status !== 200) {
         return backup_movies[6];
       }
 
       movie = response.data;
+      const moviePoster = await Promise.resolve(
+        this.getMoviePoster(movie.title)
+      );
+      movie.poster = moviePoster;
     } catch (error) {
       console.log(error);
       return null;
     }
 
-    console.log(movie);
     return movie;
   }
 
-  public async getMoviePoster(id: number): Promise<string | null> {
+  public async getMoviePoster(title: string): Promise<string> {
     let moviePoster: string = "";
+    let formatTitle = title.replaceAll(" ", "+");
+    console.log("Format title: " + formatTitle);
 
     try {
-      /* Make call to OMDB or TMDB */
-      const response = await axios.get(/*api_url + */ "/ + id");
+      const response = await axios.get(
+        `http://www.omdbapi.com/?t=${formatTitle}&apikey=97352ccd`
+      );
+
       if (response.status !== 200) {
         console.log("Poster of movie not found!");
-        return null;
+        return "";
       }
+
+      moviePoster = response.data.Poster;
     } catch (error) {
       console.log(error);
-      return null;
+      return "";
     }
 
     return moviePoster;
@@ -119,6 +121,13 @@ export default class MovieService {
       }
 
       topMovies = response.data;
+
+      topMovies.map(async (movie) => {
+        const movieTitle = await Promise.resolve(
+          this.getMoviePoster(movie.title)
+        );
+        movie.poster = movieTitle;
+      });
     } catch (error) {
       console.log(error);
       return [];

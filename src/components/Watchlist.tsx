@@ -11,7 +11,7 @@ const Watchlist = () => {
   console.log("FROM WATCHLIST: " + watchlist);
 
   // Make a request to get movie poster from OMDB
-  watchlist.map(async (movie) => {
+  /*watchlist.map(async (movie) => {
     let formatTitle = movie.title.replace(" ", "+");
     console.log("Format title: " + formatTitle);
     const omdb_response = await axios.get(
@@ -19,7 +19,7 @@ const Watchlist = () => {
     );
     movie.title = omdb_response.data.poster;
     movie.rating = omdb_response.data.rating;
-  });
+  });*/
 
   return (
     <div className="movie-page">
