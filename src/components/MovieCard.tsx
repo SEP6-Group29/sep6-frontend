@@ -1,3 +1,4 @@
+import { Image } from "@chakra-ui/react";
 import React from "react";
 import Movie from "../models/Movie.model";
 import MovieControls from "./MovieControls";
@@ -19,6 +20,7 @@ const MovieCard = (props: MovieProps) => {
       <div className="overlay">
         {props.movie.poster ? (
           <>
+            {/*<Image src={props.movie.poster} alt={props.movie.title} />*/}
             <img src={props.movie.poster} alt={props.movie.title} />
             <span>{props.movie.title}</span>
           </>

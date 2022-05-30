@@ -10,7 +10,7 @@ const AddFavourites = () => {
   console.log(favourites);
 
   // Make a request to get movie poster from OMDB
-  favourites.map(async (movie) => {
+  /*favourites.map(async (movie) => {
     let formatTitle = movie.title.replace(" ", "+");
     console.log("Format title: " + formatTitle);
     const omdb_response = await axios.get(
@@ -18,7 +18,7 @@ const AddFavourites = () => {
     );
     movie.title = omdb_response.data.poster;
     movie.rating = omdb_response.data.rating;
-  });
+  });*/
 
   return (
     <>

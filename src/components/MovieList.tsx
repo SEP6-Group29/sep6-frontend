@@ -31,8 +31,8 @@ const MovieList = (props: any) => {
             overflow="hidden"
             marginLeft="20px"
           >
-            {/*<Image src={movie.poster} alt={movie.title} />*/}
-            <img src={movie.poster} alt={movie.title} />
+            <Image src={movie.poster} alt={movie.title} />
+            {/*<img src={movie.poster} alt={movie.title} />*/}
             <Box p="6">
               <Box
                 mt="1"
