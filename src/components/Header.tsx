@@ -64,8 +64,7 @@ const Header = () => {
             <li>
               <Link to="/login">Login</Link>             
             </li>
-            <li>
-            <Link to="/register">Register</Link>             
+            <li>                     
               <Link to="/stats">Stats</Link>
             </li>
             <main className="form-signin">

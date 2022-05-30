@@ -21,7 +21,6 @@ import {
 } from '@chakra-ui/react'
 
 const Register = () => {
-    const [id, setId] = useState('');
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -35,7 +34,6 @@ const Register = () => {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                id,
                 username,
                 emailAddress,
                 password
@@ -81,10 +79,7 @@ const Register = () => {
 
                         <Stack spacing="6">
                             <Stack spacing="5">
-                                <FormControl>
-                                    <FormLabel htmlFor="Id">Id</FormLabel>
-                                    <Input id="id" type="id" onChange={e => setId(e.target.value)} />
-                                </FormControl>
+                                
                                 <FormControl>
                                     <FormLabel htmlFor="username">Username</FormLabel>
                                     <Input id="username" type="username" onChange={e => setUsername(e.target.value)} />
