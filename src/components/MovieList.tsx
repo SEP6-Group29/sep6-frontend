@@ -1,6 +1,7 @@
 import { StarIcon } from "@chakra-ui/icons";
 import { Box, Image, Badge, Grid, GridItem, Heading } from "@chakra-ui/react";
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import Movie from "../models/Movie.model";
 import MovieService from "../services/movie.service";
 
@@ -9,24 +10,12 @@ const MovieList = (props: any) => {
 
   const [topMovies, setTopMovies] = useState<Movie[]>([]);
 
-  movieService.GetTopMovies().then((movies) => {
+  movieService.getTopMovies().then((movies) => {
     let myTopMovies: Movie[] = movies;
 
     setTopMovies(myTopMovies);
   });
 
-  /*  const property = {
-    imageUrl: "https://bit.ly/2Z4KKcF",
-    imageAlt: "Rear view of modern home with pool",
-    beds: 3,
-    baths: 2,
-    title: "Modern home in city center in the heart of historic Los Angeles",
-    formattedPrice: "$1,900.00",
-    reviewCount: 34,
-    rating: 4,
-  };*/
-  //const FavouriteComponent = props.favouriteComponent;
-  console.log(topMovies);
   return (
     <div>
       <Heading textAlign="center" marginTop="20px" marginBottom="20px">
@@ -35,13 +24,15 @@ const MovieList = (props: any) => {
       <Grid templateColumns="repeat(4, 1fr)" gap={4} paddingTop="20px">
         {topMovies.map((movie) => (
           <Box
+            key={movie.id}
             maxW="sm"
             borderWidth="1px"
             borderRadius="lg"
             overflow="hidden"
             marginLeft="20px"
           >
-            <Image src={movie.poster} alt={movie.title} />
+            {/*<Image src={movie.poster} alt={movie.title} />*/}
+            <img src={movie.poster} alt={movie.title} />
             <Box p="6">
               <Box
                 mt="1"

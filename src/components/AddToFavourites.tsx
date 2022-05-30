@@ -1,4 +1,5 @@
 import { Grid, Heading } from "@chakra-ui/react";
+import axios from "axios";
 import React, { useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import Movie from "../models/Movie.model";
@@ -7,6 +8,17 @@ import MovieCard from "./MovieCard";
 const AddFavourites = () => {
   const { favourites } = useContext(GlobalContext);
   console.log(favourites);
+
+  // Make a request to get movie poster from OMDB
+  favourites.map(async (movie) => {
+    let formatTitle = movie.title.replace(" ", "+");
+    console.log("Format title: " + formatTitle);
+    const omdb_response = await axios.get(
+      `http://www.omdbapi.com/?t=${formatTitle}&api_key=${process.env.REACT_APP_OMDB_KEY}`
+    );
+    movie.title = omdb_response.data.poster;
+    movie.rating = omdb_response.data.rating;
+  });
 
   return (
     <>

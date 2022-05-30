@@ -1,4 +1,5 @@
 import { Heading } from "@chakra-ui/react";
+import axios from "axios";
 import React, { useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import Movie from "../models/Movie.model";
@@ -8,6 +9,18 @@ import Watched from "./Watched";
 const Watchlist = () => {
   const { watchlist } = useContext(GlobalContext);
   console.log("FROM WATCHLIST: " + watchlist);
+
+  // Make a request to get movie poster from OMDB
+  watchlist.map(async (movie) => {
+    let formatTitle = movie.title.replace(" ", "+");
+    console.log("Format title: " + formatTitle);
+    const omdb_response = await axios.get(
+      `http://www.omdbapi.com/?t=${formatTitle}&api_key=97352ccd`
+    );
+    movie.title = omdb_response.data.poster;
+    movie.rating = omdb_response.data.rating;
+  });
+
   return (
     <div className="movie-page">
       <div className="container">

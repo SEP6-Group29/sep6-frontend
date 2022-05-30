@@ -13,11 +13,22 @@ export default class MovieService {
     let movieList: Movie[];
     try {
       const response = await axios.get(ALL_MOVIES);
+
       if (response.status !== 200) {
         return backup_movies;
       }
 
       movieList = response.data;
+
+      // Make a request to get movie poster from OMDB
+      movieList.map(async (movie) => {
+        let formatTitle = movie.title.replace(" ", "+");
+        console.log("Format title: " + formatTitle);
+        const omdb_response = await axios.get(
+          `http://www.omdbapi.com/?t=${formatTitle}&api_key=${process.env.REACT_APP_OMDB_KEY}`
+        );
+        movie.title = omdb_response.data.poster;
+      });
     } catch (error) {
       console.log(error);
       return [];
@@ -39,6 +50,16 @@ export default class MovieService {
       }
 
       movieList = response.data;
+
+      // Make a request to get movie poster from OMDB
+      movieList.map(async (movie) => {
+        let formatTitle = movie.title.replace(" ", "+");
+        console.log("Format title: " + formatTitle);
+        const omdb_response = await axios.get(
+          `http://www.omdbapi.com/?t=${formatTitle}&api_key=${process.env.REACT_APP_OMDB_KEY}`
+        );
+        movie.title = omdb_response.data.poster;
+      });
     } catch (error) {
       console.log(error);
       console.log("FROM getMoviesByName inside catch...");
@@ -89,7 +110,7 @@ export default class MovieService {
     return moviePoster;
   }
 
-  public async GetTopMovies(): Promise<Movie[]> {
+  public async getTopMovies(): Promise<Movie[]> {
     let topMovies: Movie[];
     try {
       const response = await axios.get(TOP_MOVIES);

@@ -1,5 +1,5 @@
 import { SearchIcon } from "@chakra-ui/icons";
-import { Divider, Icon, Stack } from "@chakra-ui/react";
+import { Avatar, Divider, Icon, Stack } from "@chakra-ui/react";
 import React from "react";
 import { Route } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
@@ -32,7 +32,7 @@ const Header = () => {
             </Stack>
             <li>
               <Link to="/">
-                Search <SearchIcon />
+                {/*Search*/} <SearchIcon />
               </Link>
             </li>
             <Stack direction="column" h="70px" p={4}>
@@ -51,19 +51,27 @@ const Header = () => {
               <Divider orientation="vertical" />
             </Stack>
             <li>
-              <Link to="/favourites">
-                Favourites <Icon />
+              <Link to="/favourites">Favourites</Link>
+            </li>
+            <Stack direction="column" h="70px" p={4}>
+              <Divider orientation="vertical" />
+            </Stack>
+            <li>
+              <Link to="/stats">Stats</Link>
+            </li>
+            <Stack direction="column" h="70px" p={4}>
+              <Divider orientation="vertical" />
+            </Stack>
+            <li>
+              <Link to="/login">
+                <Avatar size="sm" />
               </Link>
             </li>
             <Stack direction="column" h="70px" p={4}>
               <Divider orientation="vertical" />
             </Stack>
             <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
               <Link to="/register">Register</Link>
-              <Link to="/stats">Stats</Link>
             </li>
             <main className="form-signin"></main>
           </ul>
