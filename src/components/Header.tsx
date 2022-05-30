@@ -67,9 +67,6 @@ const Header = () => {
                 <Avatar size="sm" />
               </Link>
             </li>
-            <li>
-              <Link to="/stats">Stats</Link>
-            </li>
             <main className="form-signin"></main>
           </ul>
         </div>

@@ -47,14 +47,7 @@ const MovieList = (props: any) => {
               <Box>{movie.year}</Box>
 
               <Box display="flex" mt="2" alignItems="center">
-                {Array(5)
-                  .fill("")
-                  .map((_, i) => (
-                    <StarIcon
-                      key={i}
-                      color={i < movie.rating ? "teal.500" : "gray.300"}
-                    />
-                  ))}
+                <StarIcon color="teal.500" />
                 <Box as="span" ml="2" color="gray.600" fontSize="sm">
                   {movie.rating}
                 </Box>
