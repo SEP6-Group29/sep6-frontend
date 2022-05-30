@@ -23,7 +23,7 @@ const MovieList = (props: any) => {
       .then((data) => setTopMovies(data));
   }, []);
 
-  useEffect(() => {
+  /*useEffect(() => {
     topMovies.map((movie) => {
       let formatTitle = movie.title.replaceAll(" ", "+");
       const movieResponse = fetch(
@@ -39,8 +39,17 @@ const MovieList = (props: any) => {
       console.log("POSTER: " + movie.poster);
       console.log("RATING: " + movie.rating);
     });
-  }, topMovies);
+  }, topMovies);*/
 
+  topMovies.map((movie) => {
+    if (movie.poster === "N/A" || movie.poster === null) {
+      movie.poster =
+        "https://m.media-amazon.com/images/M/MV5BMzkyZGFlOWQtZjFlMi00N2YwLWE2OWQtYTgxY2NkNmM1NjMwXkEyXkFqcGdeQXVyNjY1NTM1MzA@._V1_SX300.jpg";
+    }
+    if (movie.rating === null) {
+      movie.rating = 4.2;
+    }
+  });
   console.log(topMovies);
 
   // return (
@@ -55,9 +64,14 @@ const MovieList = (props: any) => {
   return (
     <div>
       <Heading textAlign="center" marginTop="20px" marginBottom="20px">
-        Top rated movies
+        Top rated movies from 2021
       </Heading>
-      <Grid templateColumns="repeat(4, 1fr)" gap={4} paddingTop="20px">
+      <Grid
+        templateColumns="repeat(4, 1fr)"
+        gap={4}
+        paddingTop="20px"
+        marginBottom="40px"
+      >
         {topMovies
           ? topMovies.map((item) => (
               <Box
@@ -78,7 +92,7 @@ const MovieList = (props: any) => {
                     lineHeight="tight"
                     noOfLines={1}
                   >
-                    {item.title} {item.rating}
+                    {item.title}
                   </Box>
 
                   <Box>{item.year}</Box>
