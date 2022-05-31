@@ -5,6 +5,7 @@ import {
   MOVIES_BY_NAME,
   MOVIE_BY_ID,
   TOP_MOVIES,
+  DECADE_MOVIES,
 } from "../helpers/url";
 import { backup_movies } from "../helpers/backup_data";
 
@@ -121,18 +122,29 @@ export default class MovieService {
       }
 
       topMovies = response.data;
-
-      /*topMovies.map(async (movie) => {
-        const movieTitle = await Promise.resolve(
-          this.getMoviePoster(movie.title)
-        );
-        movie.poster = movieTitle;
-      });*/
     } catch (error) {
       console.log(error);
       return [];
     }
 
     return topMovies;
+  }
+
+  public async getMoviesByDecade(decade: number): Promise<Movie[]> {
+    let decadeMovies: Movie[];
+
+    try {
+      const response = await axios.get(DECADE_MOVIES);
+      if (response.status !== 200) {
+        return backup_movies;
+      }
+
+      decadeMovies = response.data;
+    } catch (error) {
+      console.log(error);
+      return [];
+    }
+
+    return decadeMovies;
   }
 }

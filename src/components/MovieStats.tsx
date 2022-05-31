@@ -1,122 +1,150 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Tabs,
   TabList,
   Tab,
   TabPanel,
   TabPanels,
-  Select,
   Heading,
   Grid,
   Box,
 } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
-const MovieStats = (props: any) => { 
-  
-  const [movieDec, setMovieDec] = useState<any[]>([]);
- 
-  useEffect(() => {
-    var decade = Tab.id;
-    if(decade="8")
-    {
-    fetch(`https://movieapp-sep6.azurewebsites.net/api/movienames/top/${decade}`)
+import Movie from "../models/Movie.model";
+import MovieService from "../services/movie.service";
 
-    .then(res => res.json())
-    .then(data => setMovieDec(data))
-  }
- else {
-  fetch("https://movieapp-sep6.azurewebsites.net/api/movienames/top/9")
+const MovieStats = (props: any) => {
+  const movieService: MovieService = new MovieService();
+  const [movieDec, setMovieDec] = useState<Movie[]>([]);
+  console.log(movieDec);
 
-    .then(res => res.json())
-    .then(data => setMovieDec(data))
-}}, [])
+  /*const handleStats = async (event: React.MouseEventHandler<HTMLButtonElement>) => {
+    fetch(
+      `https://movieapp-sep6.azurewebsites.net/api/movienames/top/${decade}`
+    )
+      .then((res) => res.json())
+      .then((data) => setMovieDec(data));
 
-// const MovieStats90=(props:any)=>{
-//   useEffect(() => {
-    
-//     fetch("https://movieapp-sep6.azurewebsites.net/api/movienames/top/9")
-//     .then(res => res.json())
-//     .then(data => setMovieDec(data))
-//   }, [])
-// }
-  console.log(movieDec)
+      //MINE
+    let decadeMovies: Movie[];
+    decadeMovies = await movieService.getMoviesByDecade(event.);
+    setMovieDec(decadeMovies);
 
+    event.preventDefault();
+  };*/
 
-   return (   
-   <div>
-         <Tabs variant="soft-rounded" colorScheme="green">
-           <TabList>
-             <Tab onClick={MovieStats} id="8">80's</Tab>
-             <Tab onClick={MovieStats} id="9">90's</Tab>
-             <Tab id="0">00's</Tab>
-             <Tab value={"10"}>10's</Tab>
-           </TabList>
-           <Select placeholder="Select option">
-             <option value="option1">Bar chart</option>
-             <option value="option2">Circular</option>
-             <option value="option3">Podium</option>
-           </Select>
-           <TabPanels>
-             <TabPanel>
-               <p>Best movies of 1980's decade</p>
-             </TabPanel>
-             <TabPanel>
-               <p>Best movies of 1990's decade</p>
-             </TabPanel>
-             <TabPanel>
-               <p>Best movies of 2000's decade</p>
-             </TabPanel>
-             <TabPanel>
-               <p>Best movies of 2010's decade</p>
-             </TabPanel>
-           </TabPanels>
-         </Tabs>
-         
-       <div>
-     
-      
-       <Grid templateColumns="repeat(4, 1fr)" gap={4} paddingTop="20px">
-         {movieDec ? movieDec.map(item=>
-         
-           <Box
-             key={item.id}
-             maxW="sm"
-             borderWidth="1px"
-             borderRadius="lg"
-             overflow="hidden"
-             marginLeft="20px"
-           >
-             {/*<Image src={movie.poster} alt={movie.title} />*/}
-             <img src={item.poster} alt={item.title} />
-             <Box p="6">
-               <Box
-                 mt="1"
-                 fontWeight="semibold"
-                 as="h4"
-                 lineHeight="tight"
-                 noOfLines={1}
-               >
-                 {item.title}
-               </Box>
+  return (
+    <div>
+      <Tabs variant="soft-rounded" colorScheme="green">
+        <TabList>
+          <Tab
+            onClick={async () => {
+              fetch(
+                `https://movieapp-sep6.azurewebsites.net/api/movienames/top/8`
+              )
+                .then((res) => res.json())
+                .then((data) => setMovieDec(data));
+            }}
+            id="8"
+          >
+            80's
+          </Tab>
+          <Tab
+            onClick={async () => {
+              fetch(
+                `https://movieapp-sep6.azurewebsites.net/api/movienames/top/9`
+              )
+                .then((res) => res.json())
+                .then((data) => setMovieDec(data));
+            }}
+            id="9"
+          >
+            90's
+          </Tab>
+          <Tab
+            onClick={async () => {
+              fetch(
+                `https://movieapp-sep6.azurewebsites.net/api/movienames/top/0`
+              )
+                .then((res) => res.json())
+                .then((data) => setMovieDec(data));
+            }}
+            id="0"
+          >
+            00's
+          </Tab>
+          <Tab
+            onClick={async () => {
+              fetch(
+                `https://movieapp-sep6.azurewebsites.net/api/movienames/top/10`
+              )
+                .then((res) => res.json())
+                .then((data) => setMovieDec(data));
+            }}
+            value={"10"}
+          >
+            10's
+          </Tab>
+        </TabList>
 
-               <Box>{item.year}</Box>
+        <TabPanels>
+          <TabPanel>
+            <p>Best movies of 1980's decade</p>
+          </TabPanel>
+          <TabPanel>
+            <p>Best movies of 1990's decade</p>
+          </TabPanel>
+          <TabPanel>
+            <p>Best movies of 2000's decade</p>
+          </TabPanel>
+          <TabPanel>
+            <p>Best movies of 2010's decade</p>
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
 
-               <Box display="flex" mt="2" alignItems="center">
-                 <StarIcon color="teal.500" />
-                 <Box as="span" ml="2" color="gray.600" fontSize="sm">
-                   {item.rating}
-                 </Box>
-               </Box>
-             </Box>
-           </Box>
-         )
-         :null}
-       </Grid>
-       </div>
-       </div>
-     
-   );
- };
+      <div>
+        <Grid templateColumns="repeat(5, 1fr)" gap={4} paddingTop="20px">
+          {movieDec
+            ? movieDec.map((item) => (
+                <Box
+                  key={item.id}
+                  maxW="sm"
+                  borderWidth="1px"
+                  borderRadius="lg"
+                  overflow="hidden"
+                  marginLeft="20px"
+                >
+                  {/*<Image src={movie.poster} alt={movie.title} />*/}
+                  <img src={item.poster} alt={item.title} />
+                  <Box p="6">
+                    <Box
+                      mt="1"
+                      fontWeight="semibold"
+                      as="h4"
+                      lineHeight="tight"
+                      noOfLines={1}
+                    >
+                      {item.title}
+                    </Box>
+
+                    <Box>{item.year}</Box>
+
+                    <Box display="flex" mt="2" alignItems="center">
+                      <StarIcon color="teal.500" />
+                      <Box as="span" ml="2" color="gray.600" fontSize="sm">
+                        {item.rating}
+                      </Box>
+                    </Box>
+                  </Box>
+                </Box>
+              ))
+            : null}
+        </Grid>
+      </div>
+    </div>
+  );
+};
 // const MovieStats = () => {
 //   return (
 //     <>
