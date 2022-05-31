@@ -16,16 +16,11 @@ import MovieService from "../services/movie.service";
 const MovieStats = (props: any) => {
   const movieService: MovieService = new MovieService();
   const [movieDec, setMovieDec] = useState<Movie[]>([]);
+
   console.log(movieDec);
 
   /*const handleStats = async (event: React.MouseEventHandler<HTMLButtonElement>) => {
     fetch(
-      `https://movieapp-sep6.azurewebsites.net/api/movienames/top/${decade}`
-    )
-      .then((res) => res.json())
-      .then((data) => setMovieDec(data));
-
-      //MINE
     let decadeMovies: Movie[];
     decadeMovies = await movieService.getMoviesByDecade(event.);
     setMovieDec(decadeMovies);
@@ -35,7 +30,12 @@ const MovieStats = (props: any) => {
 
   return (
     <div>
-      <Tabs variant="soft-rounded" colorScheme="green">
+      <Tabs
+        align="center"
+        marginTop="20px"
+        variant="soft-rounded"
+        colorScheme="green"
+      >
         <TabList>
           <Tab
             onClick={async () => {
@@ -89,22 +89,27 @@ const MovieStats = (props: any) => {
 
         <TabPanels>
           <TabPanel>
-            <p>Best movies of 1980's decade</p>
+            <Heading>Best movies of 1980's decade</Heading>
           </TabPanel>
           <TabPanel>
-            <p>Best movies of 1990's decade</p>
+            <Heading>Best movies of 1990's decade</Heading>
           </TabPanel>
           <TabPanel>
-            <p>Best movies of 2000's decade</p>
+            <Heading>Best movies of 2000's decade</Heading>
           </TabPanel>
           <TabPanel>
-            <p>Best movies of 2010's decade</p>
+            <Heading>Best movies of 2010's decade</Heading>
           </TabPanel>
         </TabPanels>
       </Tabs>
 
       <div>
-        <Grid templateColumns="repeat(5, 1fr)" gap={4} paddingTop="20px">
+        <Grid
+          templateColumns="repeat(5, 1fr)"
+          gap={4}
+          paddingTop="20px"
+          margin="35px"
+        >
           {movieDec
             ? movieDec.map((item) => (
                 <Box
@@ -115,7 +120,6 @@ const MovieStats = (props: any) => {
                   overflow="hidden"
                   marginLeft="20px"
                 >
-                  {/*<Image src={movie.poster} alt={movie.title} />*/}
                   <img src={item.poster} alt={item.title} />
                   <Box p="6">
                     <Box
@@ -145,40 +149,5 @@ const MovieStats = (props: any) => {
     </div>
   );
 };
-// const MovieStats = () => {
-//   return (
-//     <>
-//       <div className="results movie-page">
-//         <Tabs variant="soft-rounded" colorScheme="green">
-//           <TabList>
-//             <Tab>80's</Tab>
-//             <Tab>90's</Tab>
-//             <Tab>00's</Tab>
-//             <Tab>10's</Tab>
-//           </TabList>
-//           <Select placeholder="Select option">
-//             <option value="option1">Bar chart</option>
-//             <option value="option2">Circular</option>
-//             <option value="option3">Podium</option>
-//           </Select>
-//           <TabPanels>
-//             <TabPanel>
-//               <p>Best movies of 1980's decade</p>
-//             </TabPanel>
-//             <TabPanel>
-//               <p>Best movies of 1990's decade</p>
-//             </TabPanel>
-//             <TabPanel>
-//               <p>Best movies of 2000's decade</p>
-//             </TabPanel>
-//             <TabPanel>
-//               <p>Best movies of 2010's decade</p>
-//             </TabPanel>
-//           </TabPanels>
-//         </Tabs>
-//       </div>
-//     </>
-//   );
-// };
 
 export default MovieStats;
