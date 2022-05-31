@@ -67,10 +67,11 @@ const MovieList = (props: any) => {
         Top rated movies from 2021
       </Heading>
       <Grid
-        templateColumns="repeat(4, 1fr)"
+        templateColumns="repeat(5, 1fr)"
         gap={4}
         paddingTop="20px"
         marginBottom="40px"
+        marginRight="20px"
       >
         {topMovies
           ? topMovies.map((item) => (

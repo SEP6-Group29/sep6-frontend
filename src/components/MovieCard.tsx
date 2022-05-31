@@ -41,8 +41,15 @@ const MovieCard = (props: MovieProps) => {
       <div className="overlay">
         {props.movie.poster ? (
           <>
-            {/*<Image src={props.movie.poster} alt={props.movie.title} />*/}
-            <img src={props.movie.poster} alt={props.movie.title} />
+            {/* />*/}
+            <Box>
+              <Image
+                src={props.movie.poster}
+                alt={props.movie.title}
+                onClick={onOpen}
+              />
+            </Box>
+
             <span>{props.movie.title}</span>
 
             {/* Now it comes the modal dialog */}
