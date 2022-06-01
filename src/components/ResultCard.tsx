@@ -6,6 +6,7 @@ import Movie from "../models/Movie.model";
 
 type MovieProps = {
   movie: Movie;
+  type?: string;
 };
 
 //TODO: Change type to model Movie
@@ -53,14 +54,6 @@ const ResultCard = (props: MovieProps) => {
           </div>
 
           <div className="controls">
-            {/*TODO: Use Button component from ChackraUI*/}
-            {/*<button
-              className="button"
-              disabled={watchlistDisabled}
-              onClick={() => addMovieToWatchlist(props.movie)}
-            >
-              Add to Watchlist
-        </button>*/}
             <Button
               colorScheme="green"
               size="md"
@@ -69,13 +62,6 @@ const ResultCard = (props: MovieProps) => {
             >
               Add to Watchlist
             </Button>
-            {/*<button
-              className="button"
-              disabled={watchedDisabled}
-              onClick={() => addMovieToWatched(props.movie)}
-            >
-              Add to Watched
-    </button>*/}
             <Button
               colorScheme="green"
               size="md"
@@ -84,13 +70,6 @@ const ResultCard = (props: MovieProps) => {
             >
               Add to Watched
             </Button>
-            {/*<button
-              className="button"
-              disabled={favouriteDisabled}
-              onClick={() => addMovieToFavourites(props.movie)}
-            >
-              Add to Favourites
-</button>*/}
             <Button
               colorScheme="green"
               size="md"

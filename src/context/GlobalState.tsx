@@ -5,13 +5,13 @@ import AppReducer from "./AppReducer";
 const initialState = {
   watchlist: localStorage.getItem("watchlist")
     ? JSON.parse(localStorage.getItem("watchlist")!)
-    : [], //TODO: Set type to Movie[]
+    : [],
   watched: localStorage.getItem("watched")
     ? JSON.parse(localStorage.getItem("watched")!)
     : [],
   favourites: localStorage.getItem("favourites")
     ? JSON.parse(localStorage.getItem("favourites")!)
-    : [], //TODO: Set type to Movie[]
+    : [],
 };
 
 // create context

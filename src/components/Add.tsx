@@ -7,9 +7,7 @@ const Add = () => {
   const movieService: MovieService = new MovieService();
 
   const [query, setQuery] = useState(""); // For the search input
-  /* TODO: Change type to the model Movie */
   const [results, setResults] = useState<Movie[]>([]); // For the movies array
-  const [movie, setMovie] = useState({}); // For the movie call to api
 
   const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -17,9 +15,7 @@ const Add = () => {
     setQuery(e.target.value);
 
     movieService.getMoviesByName(query).then((movies) => {
-      //setMovie(movies);
       let myMovies: Movie[] = movies;
-      //setResults(movies);
       setResults(myMovies);
       let m: Movie;
       for (m of myMovies) {
@@ -27,10 +23,6 @@ const Add = () => {
       }
       //console.log("From onChange in the Add component: " + JSON.parse(movie));
     });
-    /* 
-    movieService.getAllMovies().then((res) => {
-      setResults(res);
-    }); */
 
     /* fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1&include_adult=false&query=${query}`

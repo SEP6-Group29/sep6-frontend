@@ -22,7 +22,7 @@ function App2() {
       <Header />
       <Routes>
         <Route path="/" element={<MovieList />} />
-        <Route path="/movies" element={<Add />} />
+        <Route path="/Search" element={<Add />} />
         <Route path="/watchlist" element={<Watchlist />} />
         <Route path="/watched" element={<Watched />} />
         <Route path="/favourites" element={<AddFavourites />} />
