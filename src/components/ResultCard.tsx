@@ -34,14 +34,17 @@ const ResultCard = (props: MovieProps) => {
   const watchedDisabled = storedMovieWatched ? true : false;
   const favouriteDisabled = storedMovieFavourites ? true : false;
 
+  /* const image = fetch(
+    `https://movieapp-sep6.azurewebsites.net/api/movienames/top/8`
+  )
+    .then((res) => res.json())
+    .then((data) => (data));*/
+
   return (
     <div className="result-card">
       <div className="poster-wrapper">
         {props.movie.poster ? (
-          <img
-            src={`https://image.tmdb.org./t/p/w200${props.movie.poster}`}
-            alt={props.movie.title}
-          />
+          <img src={props.movie.poster} alt={props.movie.title} />
         ) : (
           <div className="filler-poster"></div>
         )}

@@ -12,12 +12,21 @@ import {
 import { StarIcon } from "@chakra-ui/icons";
 import Movie from "../models/Movie.model";
 import MovieService from "../services/movie.service";
+import MovieControls from "./MovieControls";
 
 const MovieStats = (props: any) => {
   const movieService: MovieService = new MovieService();
   const [movieDec, setMovieDec] = useState<Movie[]>([]);
 
   console.log(movieDec);
+
+  if (props.movie.poster === "N/A" || props.movie.poster === null) {
+    props.movie.poster =
+      "https://m.media-amazon.com/images/M/MV5BMzkyZGFlOWQtZjFlMi00N2YwLWE2OWQtYTgxY2NkNmM1NjMwXkEyXkFqcGdeQXVyNjY1NTM1MzA@._V1_SX300.jpg";
+  }
+  if (props.movie.rating === null) {
+    props.movie.rating = 4.2;
+  }
 
   return (
     <div>
@@ -131,6 +140,7 @@ const MovieStats = (props: any) => {
                         {item.rating}
                       </Box>
                     </Box>
+                    <MovieControls type={props.type} movie={props.movie} />
                   </Box>
                 </Box>
               ))
