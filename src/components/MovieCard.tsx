@@ -35,108 +35,59 @@ const MovieCard = (props: MovieProps) => {
       "...and type: " +
       props.type
   );
+
+  if (props.movie.poster === "N/A" || props.movie.poster === null) {
+    props.movie.poster =
+      "https://m.media-amazon.com/images/M/MV5BMzkyZGFlOWQtZjFlMi00N2YwLWE2OWQtYTgxY2NkNmM1NjMwXkEyXkFqcGdeQXVyNjY1NTM1MzA@._V1_SX300.jpg";
+  }
+  if (props.movie.rating === null) {
+    props.movie.rating = 4.2;
+  }
+
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <div className="movie-card">
       <div className="overlay">
-        {props.movie.poster ? (
-          <>
-            {/* />*/}
-            <Box>
-              <Image
-                src={props.movie.poster}
-                alt={props.movie.title}
-                onClick={onOpen}
-              />
-            </Box>
+        <Image
+          maxHeight="100px"
+          maxWidth="100px"
+          src={props.movie.poster}
+          alt={props.movie.title}
+          onClick={onOpen}
+        />
 
-            <span>{props.movie.title}</span>
+        <span>{props.movie.title}</span>
 
-            {/* Now it comes the modal dialog */}
-            <Button onClick={onOpen}>Open Modal</Button>
+        <Box>
+          {/* Now it comes the modal dialog */}
+          <Button onClick={onOpen}>Read more...</Button>
 
-            <Modal isOpen={isOpen} onClose={onClose}>
-              <ModalOverlay />
-              <ModalContent>
-                <ModalHeader className="modal-header">
-                  {props.movie.title}
-                </ModalHeader>
-                <ModalCloseButton />
-                <ModalBody>
-                  <Text>Here it comes the description of the movie</Text>
-                  <Text>DIRECTOR</Text>
-                  <Text>ACTORS</Text>
-                  <Text>Rating: {props.movie.rating}</Text>
-                </ModalBody>
+          <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader className="modal-header">
+                {props.movie.title}
+              </ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <Text>Here it comes the description of the movie</Text>
+                <Text>DIRECTOR</Text>
+                <Text>ACTORS</Text>
+                <Text>Rating: {props.movie.rating}</Text>
+              </ModalBody>
 
-                <ModalFooter>
-                  <Button colorScheme="blue" mr={3} onClick={onClose}>
-                    Close
-                  </Button>
-                </ModalFooter>
-              </ModalContent>
-            </Modal>
-          </>
-        ) : (
-          <Box
-            maxW="sm"
-            borderWidth="1px"
-            borderRadius="lg"
-            overflow="hidden"
-            marginLeft="20px"
-          >
-            <Image src={props.movie.poster} alt={props.movie.title} />
-            {/*<img src={item.poster} alt={item.title} />*/}
-            <Box p="6">
-              <Box
-                mt="1"
-                fontWeight="semibold"
-                as="h4"
-                lineHeight="tight"
-                noOfLines={1}
-              >
-                {props.movie.title} {props.movie.rating}
-              </Box>
-
-              <Box>{props.movie.year}</Box>
-
-              <Box display="flex" mt="2" alignItems="center">
-                <StarIcon color="#FAD02C" />
-                <Box as="span" ml="2" color="gray.600" fontSize="sm">
-                  {props.movie.rating}
-                </Box>
-              </Box>
-              <Box>
-                {/* Now it comes the modal dialog */}
-                <Button onClick={onOpen} marginTop="10px" size="sm">
-                  Learn more...
+              <ModalFooter>
+                <Button colorScheme="blue" mr={3} onClick={onClose}>
+                  Close
                 </Button>
-
-                <Modal isOpen={isOpen} onClose={onClose}>
-                  <ModalOverlay />
-                  <ModalContent>
-                    <ModalHeader>{props.movie.title}</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody>
-                      <Text>Here it comes the description of the movie</Text>
-                      <Text>DIRECTOR</Text>
-                      <Text>ACTORS</Text>
-                      <Text>Rating: {props.movie.rating}</Text>
-                    </ModalBody>
-
-                    <ModalFooter>
-                      <Button colorScheme="green" mr={3} onClick={onClose}>
-                        Close
-                      </Button>
-                    </ModalFooter>
-                  </ModalContent>
-                </Modal>
-              </Box>
-            </Box>
-          </Box>
-        )}
-
-        <MovieControls type={props.type} movie={props.movie} />
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
+        </Box>
+        <Box width="100px" height="100px">
+          <MovieControls type={props.type} movie={props.movie} />
+        </Box>
       </div>
     </div>
   );

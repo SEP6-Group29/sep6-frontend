@@ -19,15 +19,6 @@ const MovieStats = (props: any) => {
 
   console.log(movieDec);
 
-  /*const handleStats = async (event: React.MouseEventHandler<HTMLButtonElement>) => {
-    fetch(
-    let decadeMovies: Movie[];
-    decadeMovies = await movieService.getMoviesByDecade(event.);
-    setMovieDec(decadeMovies);
-
-    event.preventDefault();
-  };*/
-
   return (
     <div>
       <Tabs

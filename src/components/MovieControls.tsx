@@ -1,3 +1,4 @@
+import { Button } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
 
@@ -14,62 +15,62 @@ const MovieControls = ({ movie, type }) => {
     <div className="inner-card-controls">
       {type === "watchlist" && (
         <>
-          <button
+          <Button
             className="ctrl-button"
             onClick={() => addMovieToWatched(movie)}
           >
             <i className="fa-fw far fa-eye"></i>
-          </button>
+          </Button>
 
-          <button
+          <Button
             className="ctrl-button"
             onClick={removeMovieFromWatchlist(movie.id)}
           >
             <i className="fa-fw far fa-times"></i>
-          </button>
+          </Button>
 
-          <button
+          <Button
             className="ctrl-button"
             onClick={addMovieToFavourites(movie.id)}
           >
             <i className="fas fa-heart"></i>
-          </button>
+          </Button>
         </>
       )}
 
       {type === "watched" && (
         <>
-          <button
+          <Button
             className="ctrl-button"
             onClick={() => moveToWatchlist(movie)}
           >
             <i className="fa-fw far fa-eye-slash"></i>
-          </button>
+          </Button>
 
-          <button
+          <Button
             className="ctrl-button"
             onClick={() => removeMovieFromWatched(movie.id)}
           >
             <i className="fa-fw far fa-times"></i>
-          </button>
+          </Button>
 
-          <button
+          <Button
             className="ctrl-button"
             onClick={addMovieToFavourites(movie.id)}
           >
             <i className="fas fa-heart"></i>
-          </button>
+          </Button>
         </>
       )}
 
       {type === "favourites" && (
         <>
-          <button
+          <Button
             className="ctrl-button"
             onClick={removeMovieFromFavourites(movie.id)}
           >
             <i className="fa-fw far fa-times"></i>
-          </button>
+          </Button>
         </>
       )}
     </div>
