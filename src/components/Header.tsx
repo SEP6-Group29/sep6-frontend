@@ -25,13 +25,13 @@ const Header = () => {
 
           <ul className="nav-links">
             <li>
-              <Link to="/movies">Movies</Link>
+              <Link to="/">Movies</Link>
             </li>
             <Stack direction="column" h="70px" p={4}>
               <Divider orientation="vertical" />
             </Stack>
             <li>
-              <Link to="/">
+              <Link to="/Search">
                 {/*Search*/} <SearchIcon />
               </Link>
             </li>
