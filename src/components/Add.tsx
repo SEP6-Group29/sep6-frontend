@@ -17,24 +17,7 @@ const Add = () => {
     movieService.getMoviesByName(query).then((movies) => {
       let myMovies: Movie[] = movies;
       setResults(myMovies);
-      let m: Movie;
-      for (m of myMovies) {
-        console.log("From onChange in the Add component!! " + m.title);
-      }
-      //console.log("From onChange in the Add component: " + JSON.parse(movie));
     });
-
-    /* fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1&include_adult=false&query=${query}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if (!data.errors) {
-          setResults(data.results);
-        } else {
-          setResults([]);
-        }
-      }); */
   };
 
   return (

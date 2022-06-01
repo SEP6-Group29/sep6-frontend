@@ -20,14 +20,6 @@ export default class MovieService {
       }
 
       movieList = response.data;
-
-      //poster from OMDB
-      /*movieList.map(async (movie) => {
-        const movieTitle = await Promise.resolve(
-          this.getMoviePoster(movie.title)
-        );
-        movie.poster = movieTitle;
-      });*/
     } catch (error) {
       console.log(error);
       return [];
@@ -49,15 +41,6 @@ export default class MovieService {
       }
 
       movieList = response.data;
-
-      // poster from OMDB
-
-      /* movieList.map(async (movie) => {
-        const movieTitle = await Promise.resolve(
-          this.getMoviePoster(movie.title)
-        );
-        movie.poster = movieTitle;
-      });*/
     } catch (error) {
       return backup_movies;
     }
@@ -77,10 +60,6 @@ export default class MovieService {
       }
 
       movie = response.data;
-      /*const moviePoster = await Promise.resolve(
-        this.getMoviePoster(movie.title)
-      );
-      movie.poster = moviePoster;*/
     } catch (error) {
       console.log(error);
       return null;

@@ -1,13 +1,9 @@
 import { SearchIcon } from "@chakra-ui/icons";
 import { Avatar, Divider, Icon, Stack } from "@chakra-ui/react";
 import React from "react";
-import { Route } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
-
-/* import "src/assets/icons8-romantic-movies-16.png"; */
 
 const Header = () => {
   return (
@@ -16,10 +12,7 @@ const Header = () => {
         <div className="inner-content">
           <div className="brand">
             <Link to="/">
-              {/* 
-              <img src="https://img.icons8.com/color/48/000000/romantic-movies--v1.png" /> */}
               <img src="https://img.icons8.com/fluency/96/000000/disney-1.png" />
-              {/* <img src="https://img.icons8.com/color/96/000000/ethereum.png" /> */}
             </Link>
           </div>
 
@@ -32,7 +25,7 @@ const Header = () => {
             </Stack>
             <li>
               <Link to="/Search">
-                {/*Search*/} <SearchIcon />
+                <SearchIcon />
               </Link>
             </li>
             <Stack direction="column" h="70px" p={4}>
