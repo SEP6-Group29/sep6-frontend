@@ -10,32 +10,13 @@ import Watched from "./Watched";
 
 const Watchlist = () => {
   const { watchlist } = useContext(GlobalContext);
-  const movieService: MovieService = new MovieService();
   console.log("FROM WATCHLIST: " + watchlist);
-
-  // Make a request to get movie poster from OMDB
-  /*watchlist.map(async (movie) => {
-    let formatTitle = movie.title.replace(" ", "+");
-    console.log("Format title: " + formatTitle);
-    const omdb_response = await axios.get(
-      `http://www.omdbapi.com/?t=${formatTitle}&api_key=97352ccd`
-    );
-    movie.title = omdb_response.data.poster;
-    movie.rating = omdb_response.data.rating;
-  });*/
-  useEffect(() => {
-    watchlist.map((movie) => {
-      movieService.getMoviePoster(movie.title);
-    });
-  }, watchlist);
-  console.log("WATCHLIST: " + watchlist);
 
   return (
     <div className="movie-page">
       <div className="container">
         <div className="header">
           <Heading>Watchlist</Heading>
-
           <span className="count-pill">
             {watchlist.length}
             {watchlist.length === 1 ? " Movie" : " Movies"}

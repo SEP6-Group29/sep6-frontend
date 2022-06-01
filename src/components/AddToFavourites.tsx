@@ -9,23 +9,11 @@ const AddFavourites = () => {
   const { favourites } = useContext(GlobalContext);
   console.log(favourites);
 
-  // Make a request to get movie poster from OMDB
-  /*favourites.map(async (movie) => {
-    let formatTitle = movie.title.replace(" ", "+");
-    console.log("Format title: " + formatTitle);
-    const omdb_response = await axios.get(
-      `http://www.omdbapi.com/?t=${formatTitle}&api_key=${process.env.REACT_APP_OMDB_KEY}`
-    );
-    movie.title = omdb_response.data.poster;
-    movie.rating = omdb_response.data.rating;
-  });*/
-
   return (
     <>
       <div className="movie-page">
         <div className="container">
           <div className="header">
-            {/*<h1 className="heading">Favourite movies</h1>*/}
             <Heading noOfLines={1}>
               Favourites
               <svg
